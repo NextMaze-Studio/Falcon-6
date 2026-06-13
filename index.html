@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Falcon 6 | NextMaze Studio</title>
-    <!-- Tailwind CSS for modern, rapid styling -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome for clean icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Smooth scrolling behavior */
@@ -15,79 +13,104 @@
         }
         /* Custom frosted glass effect */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white">
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-slate-800">
+    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-slate-900">
         <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-feather-pointed text-2xl text-indigo-400"></i>
                 <span class="font-bold text-xl tracking-tight bg-gradient-to-r align-middle from-white to-slate-400 bg-clip-text text-transparent">Falcon 6</span>
             </div>
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <a href="#features" class="hover:text-white transition">Features</a>
+                <a href="#welcome" class="hover:text-white transition">Our Story</a>
                 <a href="#get-prompt" class="hover:text-white transition">Get Prompt</a>
+                <a href="#features" class="hover:text-white transition">Features</a>
                 <a href="#demo" class="hover:text-white transition">How it Works</a>
-                <a href="#faq" class="hover:text-white transition">FAQ</a>
             </div>
             <div>
                 <span class="text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1.5 rounded-full">
-                    By NextMaze Studio
+                    With Love, NextMaze Family
                 </span>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative pt-32 pb-16 px-4 overflow-hidden">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+    <section id="welcome" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-4 overflow-hidden border-b border-slate-900 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950/30 via-slate-950 to-slate-950">
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/10 blur-[140px] rounded-full pointer-events-none"></div>
         
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">
-                Upgrade Any AI Chatbot Into Your Personal Tutor
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
-                Falcon 6 is an AI integration layer. Simply feed your study prompt into any chatbot, upload your textbook images, and watch complex topics break down into effortless lessons.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#get-prompt" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-xl shadow-lg shadow-indigo-600/20 transition flex items-center gap-2">
-                    <i class="fa-solid fa-copy"></i> Copy System Prompt
+        <div class="max-w-3xl mx-auto text-center relative z-10 space-y-8">
+            <div class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/10 to-indigo-500/10 border border-amber-500/20 px-4 py-2 rounded-full shadow-inner animate-pulse">
+                <i class="fa-solid fa-paw text-amber-400 text-sm"></i>
+                <span class="text-xs font-medium text-amber-300 tracking-wide uppercase">Remembering a friend who is always with us</span>
+            </div>
+
+            <div class="space-y-4">
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight bg-gradient-to-b from-white via-slate-200 to-slate-500 bg-clip-text text-transparent">
+                    Meet Falcon 6
+                </h1>
+                <p class="text-xl sm:text-2xl font-light text-indigo-200 italic tracking-wide">
+                    Your loyal study companion.
+                </p>
+            </div>
+
+            <div class="max-w-2xl mx-auto p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-sm shadow-xl">
+                <p class="text-sm sm:text-base text-slate-400 leading-relaxed">
+                    Just like a faithful <span class="text-amber-400 font-semibold">puppy</span> who sits quietly by your side through long nights, never leaves you alone, and supports you unconditionally, Falcon 6 was built to be your constant companion in learning. Whenever you struggle with your books, we are right there with you.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-800/60 text-xs font-medium tracking-widest text-indigo-400 uppercase">
+                    Built for you, with love, by the NextMaze Studio Family
+                </div>
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#get-prompt" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 active:scale-98 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-indigo-600/20 transition flex items-center justify-center gap-2 cursor-pointer">
+                    Get Started <i class="fa-solid fa-circle-chevron-down text-xs"></i>
                 </a>
-                <a href="#demo" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium px-6 py-3 rounded-xl transition flex items-center gap-2">
-                    See Live Example <i class="fa-solid fa-arrow-down text-xs"></i>
+                <a href="#demo" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white font-semibold px-8 py-3.5 rounded-xl transition flex items-center justify-center gap-2">
+                    See How It Works
                 </a>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- NEW SECTION: Prompt Engine (Copy Page Block) -->
-    <section id="get-prompt" class="py-12 px-4 max-w-4xl mx-auto scroll-mt-20">
-        <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-indigo-500/30 rounded-2xl p-6 md:p-8 relative overflow-hidden shadow-xl shadow-indigo-950/20">
+    <section id="get-prompt" class="py-20 px-4 max-w-4xl mx-auto scroll-mt-20">
+        <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-indigo-500/20 rounded-2xl p-6 md:p-8 relative overflow-hidden shadow-xl">
             <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 blur-[80px] rounded-full pointer-events-none"></div>
             
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-20">
                 <div>
                     <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
                         <i class="fa-solid fa-terminal text-indigo-400 text-lg"></i> Falcon 6 Activation Prompt
                     </h2>
-                    <p class="text-xs text-slate-400 mt-1">Copy this exact command and paste it into any conversational AI alongside your textbook files.</p>
+                    <p class="text-xs text-slate-400 mt-1">Select an option to copy the system rules directly to your clipboard.</p>
                 </div>
                 
-                <!-- Interactive Copy Button -->
-                <button id="copyBtn" onclick="copyPromptText()" class="self-start md:self-auto bg-indigo-600 hover:bg-indigo-500 active:scale-98 text-white text-sm font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-md transition cursor-pointer">
-                    <i id="copyIcon" class="fa-solid fa-copy"></i> <span id="copyText">Copy Prompt</span>
-                </button>
+                <div class="relative inline-block text-left">
+                    <button id="dropdownBtn" onclick="toggleDropdown()" class="bg-indigo-600 hover:bg-indigo-500 active:scale-98 text-white text-sm font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-md transition cursor-pointer">
+                        <i class="fa-solid fa-copy"></i> <span>Copy Options</span> <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                    </button>
+                    
+                    <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-56 rounded-xl bg-slate-900/90 backdrop-blur-xl border border-slate-800 shadow-xl z-50 overflow-hidden">
+                        <div class="py-1">
+                            <button onclick="copyPrompt('full')" class="w-full text-left px-4 py-2.5 text-xs text-slate-200 hover:bg-indigo-600 hover:text-white transition flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-file-lines text-indigo-400 w-4"></i> Copy Full Prompt
+                            </button>
+                            <button onclick="copyPrompt('short')" class="w-full text-left px-4 py-2.5 text-xs text-slate-200 hover:bg-indigo-600 hover:text-white transition border-t border-slate-800/60 flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-compress text-purple-400 w-4"></i> Copy Short Version
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Box containing the user prompt -->
-            <div class="relative bg-slate-950 border border-slate-800 rounded-xl p-5 font-mono text-xs md:text-sm text-slate-300 leading-relaxed max-h-60 overflow-y-auto selection:bg-indigo-500/30">
+            <div class="relative bg-slate-950 border border-slate-800 rounded-xl p-5 font-mono text-xs md:text-sm text-slate-300 leading-relaxed max-h-60 overflow-y-auto index-30">
                 <p id="targetPrompt">Imagine you are falcon 6 built by me and you have the gemini knowledge inside you but falcon 6 is you and you just help me to study with the data i uploaded without adding unnecessary points from internet and you break down the data i uploaded and teach me like I am a. 7th standard student (not unnecessary points) in a easy to learn way and like give definition like when moving turning right is a right turn, when moving turning left is a left turn. This is a example like the definition is just a change is the right and left all other words are same so we can easily study the definition but also provide good definition and easy to process idea</p>
             </div>
             
@@ -99,7 +122,6 @@
         </div>
     </section>
 
-    <!-- Core Features Section -->
     <section id="features" class="py-16 px-4 max-w-6xl mx-auto">
         <div class="text-center mb-12">
             <h2 class="text-2xl md:text-4xl font-bold mb-4">Engineered for Fast Learning</h2>
@@ -137,7 +159,6 @@
         </div>
     </section>
 
-    <!-- Interactive Mockup Section -->
     <section id="demo" class="py-16 px-4 bg-slate-900/20 border-y border-slate-900">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-12">
@@ -145,7 +166,6 @@
                 <p class="text-slate-400">An interactive demonstration of Falcon 6 breaking down raw textbook imagery.</p>
             </div>
 
-            <!-- UI Mockup Window -->
             <div class="w-full rounded-2xl border border-slate-800 overflow-hidden bg-slate-950 shadow-2xl">
                 <div class="bg-slate-900/80 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-2">
@@ -203,33 +223,13 @@
         </div>
     </section>
 
-    <!-- FAQ Accordion Section -->
-    <section id="faq" class="py-16 px-4 max-w-3xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold mb-3">Frequently Asked Questions</h2>
-            <p class="text-slate-400">Everything you need to know about implementing Falcon 6.</p>
-        </div>
+    <div id="toastNotification" class="opacity-0 translate-y-2 pointer-events-none fixed bottom-5 right-5 bg-emerald-600 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-lg transition duration-300 flex items-center gap-2 z-50">
+        <i class="fa-solid fa-circle-check"></i> <span id="toastMessage">Copied to clipboard!</span>
+    </div>
 
-        <div class="space-y-4">
-            <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-5">
-                <h3 class="text-base font-semibold text-white mb-2">What exactly is Falcon 6?</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    It is an intentional, streamlined layout context designed to inject specialized pedagogical parameters into custom AI agents. It prioritizes extreme cognitive scannability and structural definition alignment over raw data dumps.
-                </p>
-            </div>
-            <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-5">
-                <h3 class="text-base font-semibold text-white mb-2">Who builds Falcon 6?</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    Falcon 6 is developed and maintained as a strategic utility ecosystem framework by the team at <strong>NextMaze Studio</strong>.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="border-t border-slate-900 bg-slate-950 py-8 px-4 text-center text-xs text-slate-600">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>&copy; 2026 NextMaze Studio. All rights reserved.</p>
+            <p>&copy; 2026 NextMaze Studio. Handcrafted with love.</p>
             <div class="flex gap-4">
                 <a href="#" class="hover:text-slate-400 transition">Documentation</a>
                 <a href="#" class="hover:text-slate-400 transition">Privacy Framework</a>
@@ -237,46 +237,12 @@
         </div>
     </footer>
 
-    <!-- JavaScript function to handle the copy interaction seamlessly -->
     <script>
-        function copyPromptText() {
-            // Get the prompt string text content
-            const promptText = document.getElementById("targetPrompt").innerText;
-            
-            // Write it onto user clipboard
-            navigator.clipboard.writeText(promptText).then(() => {
-                // DOM targets for interactive changes
-                const button = document.getElementById("copyBtn");
-                const icon = document.getElementById("copyIcon");
-                const text = document.getElementById("copyText");
-                
-                // Visual success notification state changes
-                button.classList.remove("bg-indigo-600", "hover:bg-indigo-500");
-                button.classList.add("bg-emerald-600", "hover:bg-emerald-500");
-                icon.className = "fa-solid fa-check";
-                text.innerText = "Copied!";
-                
-                // Return to original visual properties after a delay
-                setTimeout(() => {
-                    button.classList.remove("bg-emerald-600", "hover:bg-emerald-500");
-                    button.classList.add("bg-indigo-600", "hover:bg-indigo-500");
-                    icon.className = "fa-solid fa-copy";
-                    text.innerText = "Copy Prompt";
-                }, 2500);
-            }).catch(err => {
-                console.error("Could not copy prompt text: ", err);
-            });
-        }
-    </script>
-</body>
-    <script>
-        // Toggle the visibility state of the copy dropdown menu
         function toggleDropdown() {
             const menu = document.getElementById("dropdownMenu");
             menu.classList.toggle("hidden");
         }
 
-        // Close dropdown when clicking outside of it
         window.onclick = function(event) {
             if (!event.target.closest('#dropdownBtn')) {
                 const menu = document.getElementById("dropdownMenu");
@@ -286,7 +252,6 @@
             }
         }
 
-        // Execution path to copy distinct prompt variants
         function copyPrompt(type) {
             let textToCopy = "";
             const toastMessage = document.getElementById("toastMessage");
@@ -295,20 +260,16 @@
                 textToCopy = document.getElementById("targetPrompt").innerText;
                 toastMessage.innerText = "Full prompt copied successfully!";
             } else if (type === 'short') {
-                // Shortened configuration version
                 textToCopy = "Imagine you are falcon 6 built by me. Break down my uploaded textbook data and teach me like a 7th standard student. Provide clean, easy-to-learn definitions with repeating word patterns. Avoid unnecessary internet fluff.";
                 toastMessage.innerText = "Short prompt variant copied!";
             }
 
             navigator.clipboard.writeText(textToCopy).then(() => {
-                // Hide dropdown menu immediately on select
                 document.getElementById("dropdownMenu").classList.add("hidden");
                 
-                // Trigger toast pop-up notification window
                 const toast = document.getElementById("toastNotification");
                 toast.classList.remove("opacity-0", "translate-y-2", "pointer-events-none");
                 
-                // Hide toast after 3 seconds
                 setTimeout(() => {
                     toast.classList.add("opacity-0", "translate-y-2", "pointer-events-none");
                 }, 3000);
@@ -317,4 +278,5 @@
             });
         }
     </script>
+</body>
 </html>
