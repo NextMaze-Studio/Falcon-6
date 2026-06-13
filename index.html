@@ -269,4 +269,52 @@
         }
     </script>
 </body>
+    <script>
+        // Toggle the visibility state of the copy dropdown menu
+        function toggleDropdown() {
+            const menu = document.getElementById("dropdownMenu");
+            menu.classList.toggle("hidden");
+        }
+
+        // Close dropdown when clicking outside of it
+        window.onclick = function(event) {
+            if (!event.target.closest('#dropdownBtn')) {
+                const menu = document.getElementById("dropdownMenu");
+                if (!menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                }
+            }
+        }
+
+        // Execution path to copy distinct prompt variants
+        function copyPrompt(type) {
+            let textToCopy = "";
+            const toastMessage = document.getElementById("toastMessage");
+            
+            if (type === 'full') {
+                textToCopy = document.getElementById("targetPrompt").innerText;
+                toastMessage.innerText = "Full prompt copied successfully!";
+            } else if (type === 'short') {
+                // Shortened configuration version
+                textToCopy = "Imagine you are falcon 6 built by me. Break down my uploaded textbook data and teach me like a 7th standard student. Provide clean, easy-to-learn definitions with repeating word patterns. Avoid unnecessary internet fluff.";
+                toastMessage.innerText = "Short prompt variant copied!";
+            }
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Hide dropdown menu immediately on select
+                document.getElementById("dropdownMenu").classList.add("hidden");
+                
+                // Trigger toast pop-up notification window
+                const toast = document.getElementById("toastNotification");
+                toast.classList.remove("opacity-0", "translate-y-2", "pointer-events-none");
+                
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.add("opacity-0", "translate-y-2", "pointer-events-none");
+                }, 3000);
+            }).catch(err => {
+                console.error("Failed to copy text: ", err);
+            });
+        }
+    </script>
 </html>
