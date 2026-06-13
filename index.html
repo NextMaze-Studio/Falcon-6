@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falcon 6 | NextMaze Studio</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Smooth scrolling behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom frosted glass effect (Glassmorphism) */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white">
+
+    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-feather-pointed text-2xl text-indigo-400"></i>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r align-middle from-white to-slate-400 bg-clip-text text-transparent">Falcon 6</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#features" class="hover:text-white transition">Features</a>
+                <a href="#demo" class="hover:text-white transition">How it Works</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
+            </div>
+            <div>
+                <span class="text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1.5 rounded-full">
+                    By NextMaze Studio
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-20 px-4 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">
+                Upgrade Any AI Chatbot Into Your Personal Tutor
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+                Falcon 6 is an AI integration layer. Simply feed your study prompt into any chatbot, upload your textbook images, and watch complex topics break down into effortless lessons.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#demo" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-xl shadow-lg shadow-indigo-600/20 transition flex items-center gap-2">
+                    See Live Example <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="https://github.com" target="_blank" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium px-6 py-3 rounded-xl transition flex items-center gap-2">
+                    <i class="fa-brands fa-github"></i> View Repository
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="py-20 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-2xl md:text-4xl font-bold mb-4">Engineered for Fast Learning</h2>
+            <p class="text-slate-400">Why thousands of students use the Falcon 6 framework to ace their exams.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/60 hover:border-indigo-500/30 transition">
+                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl mb-4">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Universal Integration</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Works across your favorite AI LLMs. Inject the custom Falcon 6 prompt context layer to instantly transform basic chat logic into a structured tutor.
+                </p>
+            </div>
+            <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/60 hover:border-indigo-500/30 transition">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl mb-4">
+                    <i class="fa-solid fa-image"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Visual Processing</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Upload snapshots of textbook pages, dense diagrams, or handwritten notes. Falcon 6 extracts, parses, and translates the data into readable concepts.
+                </p>
+            </div>
+            <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/60 hover:border-indigo-500/30 transition">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl mb-4">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Simplified Vocabulary</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    No overly dense jargon. Falcon 6 instructs the underlying AI model to map symmetrical definitions seamlessly for easier visual recall.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-20 px-4 bg-slate-900/20 border-y border-slate-900">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-4xl font-bold mb-3">The Interface Concept</h2>
+                <p class="text-slate-400">An interactive demonstration of Falcon 6 breaking down raw textbook imagery.</p>
+            </div>
+
+            <div class="w-full rounded-2xl border border-slate-800 overflow-hidden bg-slate-950 shadow-2xl">
+                <div class="bg-slate-900/80 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500/40"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500/40"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500/40"></div>
+                        <span class="text-xs text-slate-500 font-mono ml-2">falcon6-tutor-session.env</span>
+                    </div>
+                    <div class="text-xs text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded border border-indigo-500/20 font-mono">
+                        ACTIVE CONTEXT
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-5 min-h-[400px]">
+                    <div class="md:col-span-2 border-b md:border-b-0 md:border-r border-slate-800 p-6 bg-slate-900/30 flex flex-col justify-between gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 tracking-wider uppercase mb-2">1. Your Global Prompt System</label>
+                            <div class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs font-mono text-slate-300 leading-relaxed">
+                                "Act as Falcon 6 built by NextMaze Studio. Use your underlying knowledge base strictly to process my uploaded textbook pages without adding internet fluff. Teach me like a 7th grader using clean, parallel pattern definitions..."
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 tracking-wider uppercase mb-2">2. Uploaded Textbook Source</label>
+                            <div class="border-2 border-dashed border-slate-800 hover:border-slate-700 transition rounded-xl p-4 text-center cursor-pointer bg-slate-950/50">
+                                <i class="fa-solid fa-file-image text-2xl text-slate-600 mb-2"></i>
+                                <p class="text-xs text-slate-400 font-medium">biology_chapter_2_anther.jpg</p>
+                                <p class="text-[10px] text-slate-600 mt-1">Image loaded into chat environment</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-3 p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="w-6 h-6 rounded bg-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">F6</div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Falcon 6 Output Node</span>
+                            </div>
+                            <div class="space-y-4 text-sm text-slate-300">
+                                <p class="font-semibold text-white text-base">Let's look at the Anther Wall Layers:</p>
+                                <ul class="space-y-2 border-l-2 border-indigo-500/30 pl-4">
+                                    <li><strong class="text-indigo-400">Epidermis:</strong> The <span class="underline decoration-indigo-500/50">outermost</span> wall layer that <span class="text-white">protects</span> the developing pollen.</li>
+                                    <li><strong class="text-indigo-400">Tapetum:</strong> The <span class="underline decoration-indigo-500/50">innermost</span> wall layer that <span class="text-white">nourishes</span> the developing pollen.</li>
+                                    <li class="text-xs text-slate-500 italic mt-1">(Notice how simple it is? Only the structural position and its function change between definitions!)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-900 pt-4 mt-6 flex items-center justify-between text-xs text-slate-500">
+                            <span>Processing Time: 0.42s</span>
+                            <span>Model state: Synced</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 px-4 max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">Frequently Asked Questions</h2>
+            <p class="text-slate-400">Everything you need to know about implementing Falcon 6.</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-5">
+                <h3 class="text-base font-semibold text-white mb-2">What exactly is Falcon 6?</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    It is an intentional, streamlined layout context designed to inject specialized pedagogical parameters into custom AI agents. It prioritizes extreme cognitive scannability and structural definition alignment over raw data dumps.
+                </p>
+            </div>
+            <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-5">
+                <h3 class="text-base font-semibold text-white mb-2">Who builds Falcon 6?</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Falcon 6 is developed and maintained as a strategic utility ecosystem framework by the team at <strong>NextMaze Studio</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-900 bg-slate-950 py-8 px-4 text-center text-xs text-slate-600">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 NextMaze Studio. All rights reserved.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-slate-400 transition">Documentation</a>
+                <a href="#" class="hover:text-slate-400 transition">Privacy Framework</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
