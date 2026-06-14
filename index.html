@@ -463,10 +463,10 @@
 
     <script>
         // -----------------------------------------------------------
-        // CONFIGURATION: Set your Discord properties here
+        // CONFIGURATION: Linked directly to your Discord integrations
         // -----------------------------------------------------------
         const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1515795446063431691/HNqfa9ION337C0qa023uzp_4Tf8T6mYZrAqPDHCw9RchQ4eoHGdEo1rUguykwtmSj6Lf"; 
-        const DISCORD_ROLE_ID = "1487396332304859216"; // Numbers only, e.g., "1122334455667788"
+        const DISCORD_ROLE_ID = "1487396332304859216";
 
         // Tribute Modal Visibility Controls
         function openTributeModal() {
@@ -546,12 +546,6 @@
 
             const username = nameInput || "Anonymous Scholar";
 
-            // Guard check for setup configurations
-            if(DISCORD_WEBHOOK_URL === "https://discord.com/api/webhooks/1515795446063431691/HNqfa9ION337C0qa023uzp_4Tf8T6mYZrAqPDHCw9RchQ4eoHGdEo1rUguykwtmSj6Lf") {
-                alert("Developer Note: Please configure the DISCORD_WEBHOOK_URL script variable to receive submissions.");
-                return;
-            }
-
             // Update button UI state during flight
             submitBtn.disabled = true;
             submitBtn.innerText = "Transmitting to Channel...";
@@ -562,7 +556,7 @@
                 embeds: [
                     {
                         title: "📝 User Review Influx",
-                        color: 10904913, // Terracotta decimal signature color equivalent (#A66551)
+                        color: 10904913, // Terracotta signature color equivalent (#A66551)
                         fields: [
                             { name: "Sender", value: username, inline: true },
                             { name: "Workspace Node", value: "Falcon 6 Landing Page", inline: true },
