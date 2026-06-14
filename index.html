@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Falcon 6 | NextMaze Studio</title>
+    <title>Borea AI | NextMaze Studio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,127 +13,490 @@
         }
 
         /* -----------------------------------------------------------
-           NEW: Vintage Botanical Aesthetic Styles (Based on image_0.png)
+           NEW AESTHETIC STYLES (Based on reference image)
            ----------------------------------------------------------- */
-        
         :root {
-            /* Palette derived from the provided image */
-            --color-bg-primary: #F8F5E9; /* Warm parchment */
-            --color-text-charcoal: #3D3D3D; /* Muted charcoal */
-            --color-accent-terracotta: #A66551; /* Warm copper/red-brown */
-            --color-accent-ochre: #CB914C; /* Gold/yellow accent */
-            --color-accent-sage: #80967C; /* Soft green accent */
-            --color-border-dark: #3F3C36; /* Dark vintage line */
-            --color-border-light: #C4B9AA; /* Lighter vintage line */
+            --color-bg-primary: #0A0A0A; /* Deeper dark background */
+            --color-card-bg: rgba(255, 255, 255, 0.05); /* Soft, translucent card fill */
+            --color-card-border: rgba(255, 255, 255, 0.1);
+            --color-text-dim: #A3A3A3; /* Dimmed text for links */
+            --color-accent-blue: #007BFF; /* Distinctive hover blue */
         }
 
         body {
             background-color: var(--color-bg-primary);
-            color: var(--color-text-charcoal);
-            font-family: 'Crimson Pro', serif; /* A classier, slightly vintage serif */
-        }
-
-        /* Vintage line art patterns (placeholder or simplified) */
-        .vintage-pattern-bg {
             background-image: 
-                linear-gradient(rgba(196, 185, 170, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(196, 185, 170, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
+                radial-gradient(at 10% 20%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(186, 73, 73, 0.1) 0px, transparent 50%);
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif; /* Clean, modern font */
         }
 
-        /* Custom frame styles for panels and buttons */
-        .vintage-frame {
-            border: 2px solid var(--color-border-dark);
-            border-radius: 4px;
-            position: relative;
-            background: var(--color-bg-primary);
-        }
-        
-        /* Inner decorative border logic */
-        .vintage-frame::after {
-            content: '';
-            position: absolute;
-            top: 4px; left: 4px; right: 4px; bottom: 4px;
-            border: 1px solid var(--color-accent-sage);
-            pointer-events: none;
-            border-radius: 2px;
+        /* Custom frosted glass panel (updated for new aesthetic) */
+        .glass-panel {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Specialized panel look from the image (like "Anther Wall Layers") */
-        .botanical-panel {
-            background: #FFFEF9; /* Even lighter for emphasis */
-            border: 1px solid var(--color-border-light);
-            border-radius: 4px;
-            box-shadow: inset 0 0 10px rgba(128, 150, 124, 0.1);
+        /* Blue Tinted Hover Box style for feature cards */
+        .feature-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-card-border);
+            border-radius: 12px;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
         }
-
-        /* Styling for list bullet pattern */
-        .botanical-list li {
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        .botanical-list li::before {
-            content: '🌿'; /* A botanical symbol for a bullet */
-            position: absolute;
-            left: 0;
-            color: var(--color-accent-sage);
-            font-size: 0.8rem;
-        }
-
-        /* Stylized headings from image */
-        .stylized-heading {
-            font-family: 'Playfair Display', serif; /* Elegant, classic serif */
-            color: var(--color-accent-terracotta);
-            text-transform: capitalize; /* Like 'Engineered For Learning' */
-            border-bottom: 2px solid var(--color-border-dark);
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Button styles: outlined and filled terracota */
-        .btn-vintage-outline {
-            border: 2px solid var(--color-border-dark);
-            border-radius: 2px;
-            color: var(--color-border-dark);
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-        .btn-vintage-outline:hover {
-            background: rgba(63, 60, 54, 0.05);
-        }
-        
-        .btn-vintage-filled {
-            background-color: var(--color-accent-terracotta);
-            color: white;
-            border-radius: 2px;
-            border: 2px solid var(--color-accent-terracotta);
-            transition: all 0.3s ease;
-        }
-        .btn-vintage-filled:hover {
-            opacity: 0.9;
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-accent-blue);
+            background-color: rgba(0, 123, 255, 0.1);
         }
 
         /* -----------------------------------------------------------
-           NEW: Logos Bar CSS (Req. 2 & 3)
+           LOGO TICKER BAR CSS (Req. 2 & 3)
            ----------------------------------------------------------- */
-        .logos-bar-wrap {
+        .ticker-container {
             width: 100%;
             overflow: hidden;
-            background-color: rgba(63, 60, 54, 0.08); /* Semi-transparent dark background (Req. 2) */
-            border-top: 1px solid var(--color-border-dark); /* Decorative border (Req. 3) */
-            border-bottom: 1px solid var(--color-border-dark); /* Decorative border (Req. 3) */
-            padding: 10px 0;
-            margin: 2rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Space out text and logos (Req. 3) */
-            padding-left: 5%;
-            padding-right: 5%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px 0;
+            position: relative;
+            margin-top: 1.5rem;
+            border-radius: 8px;
         }
 
-        .logos-bar-text {
-            font-family: 'Crimson Pro', serif;
-            font-size: 0.85rem;
-            color: var(--color-text-charcoal);
-            font-weight: 300; /* Thin (Req. 3) */
-            font-style: italic; /* Italicized (Req. 3)http://googleusercontent.com/image_generation_content/2
+        .ticker-move {
+            display: flex;
+            animation: ticker 25s linear infinite; /* Increased speed for better effect */
+            width: max-content; /* Ensure container fits all logos twice */
+        }
+
+        .ticker-item {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.15; /* Req. 2: Low opacity */
+            transition: opacity 0.3s ease;
+            padding: 0 2rem;
+        }
+        .ticker-item:hover {
+            opacity: 0.8; /* Subtle highlight on hover */
+        }
+
+        .ticker-item img {
+            max-height: 28px; /* Size constraint for standard layout */
+            display: block;
+            filter: grayscale(100%) brightness(150%); /* Match aesthetic */
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Shift one full set width */
+        }
+
+        /* Search Bar styling */
+        .search-input {
+            border: 1px solid var(--color-card-border);
+            background-color: var(--color-card-bg);
+            border-radius: 99px;
+            color: #FFFFFF;
+            padding-left: 2.5rem;
+        }
+        .search-input::placeholder {
+            color: var(--color-text-dim);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    </style>
+</head>
+<body class="selection:bg-indigo-500 selection:text-white">
+
+    <nav class="fixed top-0 left-0 w-full z-40 bg-[#0A0A0A]/70 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line text-2xl text-violet-400"></i>
+                <span class="font-extrabold text-2xl tracking-tighter text-white">Borea AI</span>
+            </div>
+            
+            <div>
+                <button class="bg-[#B94949] hover:bg-[#A33E3E] text-white text-xs font-bold px-5 py-2 rounded-lg transition">
+                    Sign In/Up
+                </button>
+            </div>
+        </div>
+    </nav>
+
+        <div id="tributeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative feature-card max-w-sm w-full p-6 text-center shadow-2xl shadow-black/50 transform scale-95 transition-transform duration-300" id="tributeCard" style="background-color: var(--color-bg-primary);">
+            <button onclick="closeTributeModal()" class="absolute top-4 right-4 text-white/50 hover:text-white transition cursor-pointer text-sm">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="inline-flex items-center gap-1 bg-violet-500/10 border border-violet-500/20 px-3 py-1 rounded-full text-violet-400 text-[11px] font-medium tracking-wider uppercase mb-4">
+                <i class="fa-solid fa-code text-xs"></i> Strategic utility ecosystem
+            </div>
+
+            <div class="bg-white/5 p-3 pb-5 rounded-lg max-w-[220px] mx-auto mb-5 border border-white/10 shadow-inner">
+                <div class="aspect-square w-full bg-black/30 overflow-hidden rounded-md border border-white/5">
+                    <img src="image_df5e1d.jpg" alt="In Memory Portrait" class="w-full h-full object-cover object-center grayscale brightness-75">
+                </div>
+                <p class="text-sm mt-3 font-semibold text-white/80">Strat-Tutor Dev Framework</p>
+            </div>
+
+            <h3 class="text-lg font-bold text-white mb-2">Developed by NextMaze Studio</h3>
+            <p class="text-xs text-white/60 leading-relaxed px-2">
+                Falcon 6 is an intentional streamlined layout context to inject specialized pedagogical parameters into custom AI agents, prioritizing extreme cognitive scannability and structural definition alignment over raw data dumps.
+            </p>
+            
+            <button onclick="closeTributeModal()" class="mt-5 w-full bg-violet-600 hover:bg-violet-700 text-white font-medium text-xs py-2.5 rounded-lg transition cursor-pointer">
+                Continue to Borea Workspace
+            </button>
+        </div>
+    </div>
+
+    <header class="relative pt-32 pb-16 px-6 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-white leading-tight">
+                Empowering Individuals to Make Informed Financial Decisions
+            </h1>
+            <p class="text-lg md:text-xl text-[#A3A3A3] mb-8 max-w-2xl mx-auto font-medium">
+                Borea AI - Your Gateway to Smart Investing
+            </p>
+
+                        <div class="relative max-w-lg mx-auto mb-10 feature-card p-1 rounded-full border-white/5" style="background-color: transparent;">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-search text-white/40 text-sm"></i>
+                </div>
+                <input type="text" placeholder="Search stocks" class="search-input w-full bg-white/5 text-sm h-10 border border-white/10 rounded-full pl-10">
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 text-xs">
+                <a href="#get-prompt" class="bg-white/10 hover:bg-white/15 text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2">
+                    <i class="fa-solid fa-copy text-violet-400"></i> Copy System Prompt
+                </a>
+                <a href="#demo" class="bg-violet-600 hover:bg-violet-700 text-white font-medium px-6 py-3 rounded-lg transition flex items-center gap-2">
+                    See Market Live Example <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="get-prompt" class="py-12 px-6 max-w-5xl mx-auto scroll-mt-20">
+                <div class="feature-card p-6 md:p-8 hover:transform-none" style="border-radius: 16px;">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-terminal text-violet-400 text-lg"></i> Falcon 6 Activation Command
+                    </h2>
+                    <p class="text-xs text-[#A3A3A3] mt-1 font-medium">Copy this exact command to initialize Borea’s tutoring module inside your chatbot.</p>
+                </div>
+                
+                <button id="copyBtn" onclick="copyPromptText()" class="self-start md:self-auto bg-violet-600 hover:bg-violet-700 active:scale-98 text-white text-xs font-semibold px-5 py-2.5 rounded-lg flex items-center gap-2 shadow-md transition cursor-pointer">
+                    <i id="copyIcon" class="fa-solid fa-copy"></i> <span id="copyText">Copy Prompt</span>
+                </button>
+            </div>
+
+                        <div class="feature-card p-5 font-mono text-xs md:text-sm text-white/90 leading-relaxed max-h-60 overflow-y-auto selection:bg-violet-500/30">
+                <p id="targetPrompt">Imagine you are falcon 6 built by me and you have the gemini knowledge inside you but falcon 6 is you and you just help me to study with the data i uploaded without adding unnecessary points from internet and you break down the data i uploaded and teach me like I am a. 7th standard student (not unnecessary points) in a easy to learn way and like give definition like when moving turning right is a right turn, when moving turning left is a left turn. This is a example like the definition is just a change is the right and left all other words are same so we can easily study the definition but also provide good definition and easy to process idea</p>
+            </div>
+
+            <i class="fa-solid fa-chart-line text-2xl text-violet-400"></i>
+                <span class="font-extrabold text-2xl tracking-tighter text-white">Borea AI</span>
+            </div>
+            
+            <div>
+                <button class="bg-[#B94949] hover:bg-[#A33E3E] text-white text-xs font-bold px-5 py-2 rounded-lg transition">
+                    Sign In/Up
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="tributeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative feature-card max-w-sm w-full p-6 text-center shadow-2xl shadow-black/50 transform scale-95 transition-transform duration-300" id="tributeCard" style="background-color: var(--color-bg-primary);">
+            <button onclick="closeTributeModal()" class="absolute top-4 right-4 text-white/50 hover:text-white transition cursor-pointer text-sm">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="inline-flex items-center gap-1 bg-violet-500/10 border border-violet-500/20 px-3 py-1 rounded-full text-violet-400 text-[11px] font-medium tracking-wider uppercase mb-4">
+                <i class="fa-solid fa-code text-xs"></i> Strategic utility ecosystem
+            </div>
+
+            <div class="bg-white/5 p-3 pb-5 rounded-lg max-w-[220px] mx-auto mb-5 border border-white/10 shadow-inner">
+                <div class="aspect-square w-full bg-black/30 overflow-hidden rounded-md border border-white/5">
+                    <img src="image_df5e1d.jpg" alt="In Memory Portrait" class="w-full h-full object-cover object-center grayscale brightness-75">
+                </div>
+                <p class="text-sm mt-3 font-semibold text-white/80">Strat-Tutor Dev Framework</p>
+            </div>
+
+            <h3 class="text-lg font-bold text-white mb-2">Developed by NextMaze Studio</h3>
+            <p class="text-xs text-white/60 leading-relaxed px-2">
+                Falcon 6 is an intentional streamlined layout context to inject specialized pedagogical parameters into custom AI agents, prioritizing extreme cognitive scannability and structural definition alignment over raw data dumps.
+            </p>
+            
+            <button onclick="closeTributeModal()" class="mt-5 w-full bg-violet-600 hover:bg-violet-700 text-white font-medium text-xs py-2.5 rounded-lg transition cursor-pointer">
+                Continue to Borea Workspace
+            </button>
+        </div>
+    </div>
+
+    <header class="relative pt-32 pb-16 px-6 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-white leading-tight">
+                Empowering Individuals to Make Informed Financial Decisions
+            </h1>
+            <p class="text-lg md:text-xl text-[#A3A3A3] mb-8 max-w-2xl mx-auto font-medium">
+                Borea AI - Your Gateway to Smart Investing
+            </p>
+
+            <div class="relative max-w-lg mx-auto mb-10 feature-card p-1 rounded-full border-white/5" style="background-color: transparent;">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-search text-white/40 text-sm"></i>
+                </div>
+                <input type="text" placeholder="Search stocks" class="search-input w-full bg-white/5 text-sm h-10 border border-white/10 rounded-full pl-10">
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 text-xs">
+                <a href="#get-prompt" class="bg-white/10 hover:bg-white/15 text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2">
+                    <i class="fa-solid fa-copy text-violet-400"></i> Copy System Prompt
+                </a>
+                <a href="#demo" class="bg-violet-600 hover:bg-violet-700 text-white font-medium px-6 py-3 rounded-lg transition flex items-center gap-2">
+                    See Market Live Example <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="get-prompt" class="py-12 px-6 max-w-5xl mx-auto scroll-mt-20">
+        <div class="feature-card p-6 md:p-8 hover:transform-none" style="border-radius: 16px;">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-terminal text-violet-400 text-lg"></i> Falcon 6 Activation Command
+                    </h2>
+                    <p class="text-xs text-[#A3A3A3] mt-1 font-medium">Copy this exact command to initialize Borea’s tutoring module inside your chatbot.</p>
+                </div>
+                
+                <button id="copyBtn" onclick="copyPromptText()" class="self-start md:self-auto bg-violet-600 hover:bg-violet-700 active:scale-98 text-white text-xs font-semibold px-5 py-2.5 rounded-lg flex items-center gap-2 shadow-md transition cursor-pointer">
+                    <i id="copyIcon" class="fa-solid fa-copy"></i> <span id="copyText">Copy Prompt</span>
+                </button>
+            </div>
+
+            <div class="feature-card p-5 font-mono text-xs md:text-sm text-white/90 leading-relaxed max-h-60 overflow-y-auto selection:bg-violet-500/30">
+                <p id="targetPrompt">Imagine you are falcon 6 built by me and you have the gemini knowledge inside you but falcon 6 is you and you just help me to study with the data i uploaded without adding unnecessary points from internet and you break down the data i uploaded and teach me like I am a. 7th standard student (not unnecessary points) in a easy to learn way and like give definition like when moving turning right is a right turn, when moving turning left is a left turn. This is a example like the definition is just a change is the right and left all other words are same so we can easily study the definition but also provide good definition and easy to process idea</p>
+            </div>
+
+            <div class="ticker-container">
+                <div class="ticker-move">
+                    <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT"></div>
+                    <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
+                    <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
+                    <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
+                    <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
+                    <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot"></div>
+                    <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
+                    
+                    <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT"></div>
+                    <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
+                    <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
+                    <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
+                    <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
+                    <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot"></div>
+                    <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4 mt-5 text-[11px] text-white/40">
+                <span><i class="fa-solid fa-circle-check text-emerald-500/70 mr-1.5"></i> No internet fluff</span>
+                <span><i class="fa-solid fa-circle-check text-emerald-500/70 mr-1.5"></i> Patterned definitions</span>
+                <span><i class="fa-solid fa-circle-check text-emerald-500/70 mr-1.5"></i> Simplified Financial Analysis</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-left mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3 text-white">Engineered for Fast Financial Learning</h2>
+            <p class="text-[#A3A3A3] font-medium">Why thousands of investors use the Falcon 6 framework to build their portfolios.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-6 feature-card">
+                <div class="w-12 h-12 flex items-center justify-center mb-6">
+                    <img src="chatgpt-logo-Modern-png.png" alt="AI Logic" class="w-10 h-10 grayscale brightness-125">
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-white">Universal Platform Integration</h3>
+                <p class="text-sm text-white/70 leading-relaxed font-medium">
+                    Inject the custom Falcon 6 Pedagogical parameters context layer directly into your favorite AI chatbot to convert basic conversation into a structured educational utility.
+                </p>
+            </div>
+            <div class="p-6 feature-card">
+                <div class="w-12 h-12 flex items-center justify-center mb-6">
+                    <img src="Apple_Intelligence_Logo_2024.png" alt="Image Processing" class="w-10 h-10 grayscale brightness-125">
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-white">Cognitive Scannability Visuals</h3>
+                <p class="text-sm text-white/70 leading-relaxed font-medium">
+                    Upload snapshot images of complex 10-K filings, dense financial diagrams, or handwritten sector notes. Falcon 6 extracts, parses, and translates the data.
+                </p>
+            </div>
+            <div class="p-6 feature-card">
+                <div class="w-12 h-12 flex items-center justify-center mb-6">
+                    <img src="Microsoft_Copilot_Logo_2023.png" alt="Definitions" class="w-10 h-10 grayscale brightness-125">
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-white">Patterned Definitions alignment</h3>
+                <p class="text-sm text-white/70 leading-relaxed font-medium">
+                    Falcon 6 instructs the underlying model to map symmetrical definitions seamlessly for easier visual recall, avoiding unnecessary jargon and data dumps.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-16 px-6 border-y border-white/5">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-4xl font-bold mb-3 text-white">The Analysis Interface Concept</h2>
+                <p class="text-[#A3A3A3] font-medium">An interactive demonstration of Falcon 6 breaking down raw textbook imagery.</p>
+            </div>
+
+            <div class="w-full rounded-2xl border border-white/10 overflow-hidden bg-black shadow-2xl">
+                <div class="bg-white/5 px-4 py-3 border-b border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500/40"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500/40"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500/40"></div>
+                        <span class="text-xs text-white/30 font-mono ml-2">sector_analysis.blue</span>
+                    </div>
+                    <div class="text-xs text-violet-400 bg-violet-500/10 px-2.5 py-0.5 rounded border border-violet-500/20 font-mono">
+                        ACTIVE CONTEXT
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-5 min-h-[400px]">
+                    <div class="md:col-span-2 border-b md:border-b-0 md:border-r border-white/10 p-6 bg-white/5 flex flex-col justify-between gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-white/50 tracking-wider uppercase mb-2">1. Global Tutoring Parameter Active</label>
+                            <div class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-xs font-mono text-white/60 leading-relaxed truncate">
+                                "Imagine you are falcon 6 built by me..."
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-white/50 tracking-wider uppercase mb-2">2. Uploaded Financial Document Source</label>
+                            <div class="border-2 border-dashed border-white/10 hover:border-white/15 transition rounded-xl p-4 text-center cursor-pointer bg-white/5">
+                                <i class="fa-solid fa-file-invoice text-2xl text-white/30 mb-2"></i>
+                                <p class="text-xs text-white/80 font-medium">NVIDIA_Q4_2024_Earnings.pdf</p>
+                                <p class="text-[10px] text-white/30 mt-1">Snapshot analyzed by chatbot</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-3 p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="w-6 h-6 rounded bg-violet-600 flex items-center justify-center text-[10px] font-bold text-white">F6</div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-white/60">Falcon 6 Tutorial Output</span>
+                            </div>
+                            <div class="space-y-4 text-sm text-white/80 font-medium">
+                                <p class="font-semibold text-white text-base">Let's analyze the Earnings Report:</p>
+                                <ul class="space-y-2 border-l-2 border-violet-500/30 pl-4">
+                                    <li><strong class="text-violet-400">Revenue:</strong> The <span class="underline decoration-violet-500/50">total</span> money a company <span class="text-white">brings in</span> during the quarter.</li>
+                                    <li><strong class="text-violet-400">Net Income:</strong> The <span class="underline decoration-violet-500/50">total</span> profit a company <span class="text-white">keeps</span> after all expenses.</li>
+                                    <li class="text-xs text-white/40 italic mt-1">(Only position in the sheet and the definition type changes!)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="border-t border-white/10 pt-4 mt-6 flex items-center justify-between text-xs text-white/30 font-medium">
+                            <span>Processing Time: 0.42s</span>
+                            <span>Model state: Synced</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 px-6 max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3 text-white">Strategic Framework Questions</h2>
+            <p class="text-[#A3A3A3] font-medium">Everything you need to know about Borea’s AI integration logic.</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                <h3 class="text-base font-semibold text-white mb-2">What is the intent of the Falcon 6 framework?</h3>
+                <p class="text-sm text-white/70 leading-relaxed font-medium">
+                    It is an intentional simplified financial education layer. It prioritizes structure and clarity, ensuring AI agents deliver patterned definitions and visual recall rather than raw data dumps, focusing on extreme cognitive scannability.
+                </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                <h3 class="text-base font-semibold text-white mb-2">Who maintains the Falcon 6 utility ecosystem?</h3>
+                <p class="text-sm text-white/70 leading-relaxed font-medium">
+                    Falcon 6 is developed and strategic ecosystem utility maintained by the team at <strong>NextMaze Studio</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 py-8 px-6 text-center text-xs text-white/40 font-medium">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 NextMaze Studio. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-white transition">Documentation</a>
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tribute Modal Visibility Controls
+        function openTributeModal() {
+            const modal = document.getElementById("tributeModal");
+            const card = document.getElementById("tributeCard");
+            modal.classList.remove("opacity-0", "pointer-events-none");
+            card.classList.remove("scale-95");
+            card.classList.add("scale-100");
+        }
+
+        function closeTributeModal() {
+            const modal = document.getElementById("tributeModal");
+            const card = document.getElementById("tributeCard");
+            modal.classList.add("opacity-0", "pointer-events-none");
+            card.classList.remove("scale-100");
+            card.classList.add("scale-95");
+        }
+
+        // Show pop-up once natively on document load automatically
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(openTributeModal, 600);
+        });
+
+        // Copy mechanism text content action logic
+        function copyPromptText() {
+            const promptText = document.getElementById("targetPrompt").innerText;
+            
+            navigator.clipboard.writeText(promptText).then(() => {
+                const button = document.getElementById("copyBtn");
+                const icon = document.getElementById("copyIcon");
+                const text = document.getElementById("copyText");
+                
+                button.classList.remove("bg-violet-600", "hover:bg-violet-700");
+                button.classList.add("bg-emerald-600", "hover:bg-emerald-500");
+                icon.className = "fa-solid fa-check";
+                text.innerText = "Copied!";
+                
+                setTimeout(() => {
+                    button.classList.remove("bg-emerald-600", "hover:bg-emerald-500");
+                    button.classList.add("bg-violet-600", "hover:bg-violet-700");
+                    icon.className = "fa-solid fa-copy";
+                    text.innerText = "Copy Prompt";
+                }, 2500);
+            }).catch(err => {
+                console.error("Could not copy prompt text: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
