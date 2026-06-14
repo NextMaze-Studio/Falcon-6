@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Falcon 6 | NextMaze Studio</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Font Awesome Icons for UI Elements -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Premium Serif Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -75,7 +72,7 @@
             background-color: rgba(63, 60, 54, 0.04);
             border-top: 2px solid var(--color-border-dark);
             border-bottom: 2px solid var(--color-border-dark);
-            padding: 16px 0;
+            padding: 20px 0;
             display: flex;
             align-items: center;
         }
@@ -83,26 +80,22 @@
         .ticker-track {
             display: flex;
             width: max-content;
-            animation: scrollTicker 35s linear infinite;
+            animation: scrollTicker 30s linear infinite;
         }
 
         .ticker-item {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 0 3.5rem;
-            font-size: 1.35rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
+            justify-content: center;
+            padding: 0 4rem;
             /* Low-opacity requested for base state */
             opacity: 0.35; 
             transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
-            color: var(--color-border-dark);
         }
 
         /* Official Logo Image Layout Properties */
         .ticker-logo-img {
-            height: 32px;
+            height: 38px;
             width: auto;
             object-fit: contain;
             /* Grayscale blend to match the vintage/blueprint accent aesthetic uniformly */
@@ -113,8 +106,7 @@
         /* Logo Highlight Interaction State — Restores Full Opacity & Brand Color */
         .ticker-item:hover {
             opacity: 1;
-            transform: scale(1.05);
-            color: var(--color-accent-terracotta);
+            transform: scale(1.08);
         }
 
         .ticker-item:hover .ticker-logo-img {
@@ -148,7 +140,6 @@
 </head>
 <body class="pt-24 vintage-pattern-bg selection:bg-[#CB914C]/20">
 
-    <!-- NAVIGATION HEADER -->
     <nav class="fixed top-0 left-0 w-full z-40 bg-[#FFFEF9] border-b-2 border-[#3F3C36] shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -169,11 +160,9 @@
         </div>
     </nav>
 
-    <!-- LIVE TRIBUTE POPUP MODAL -->
     <div id="tributeModal" class="modal-overlay hidden-state fixed inset-0 z-50 flex items-center justify-center p-4">
         <div class="relative max-w-md w-full p-8 shadow-2xl vintage-frame rounded-sm transform transition-transform duration-300" id="tributeCard">
             
-            <!-- Close Trigger -->
             <button onclick="closeTribute()" class="absolute top-4 right-4 text-[#3D3D3D]/60 hover:text-[#3D3D3D] transition cursor-pointer p-1">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -183,7 +172,6 @@
                     <i class="fa-solid fa-paw"></i> Always With Us
                 </div>
 
-                <!-- Portrait Container referencing image_df5e1d.jpg -->
                 <div class="max-w-[240px] mx-auto mb-6 botanical-panel p-3 border-[#CB914C]/20 rounded">
                     <div class="aspect-square w-full border border-dashed border-[#3F3C36]/40 overflow-hidden bg-[#3D3D3D]/5 flex items-center justify-center relative">
                         <img src="image_df5e1d.jpg" alt="In Loving Memory" class="w-full h-full object-cover" onerror="this.style.display='none'; document.getElementById('fallback-icon').classList.remove('hidden');">
@@ -207,7 +195,6 @@
         </div>
     </div>
 
-    <!-- HERO PROFILE SECTORS -->
     <header class="relative pt-24 pb-16 px-6 text-center">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 stylized-heading leading-tight">
@@ -227,33 +214,29 @@
         </div>
     </header>
 
-    <!-- HORIZONTAL LOGOS TICKER BAR (MAPPED TO YOUR UPLOADED BRAND ASSETS) -->
     <div class="text-center mb-2">
         <span class="text-xs font-mono font-bold uppercase tracking-widest text-[#3D3D3D]/60">— PROMPT OPTIMIZED FOR OFFICIAL PLATFORMS —</span>
     </div>
     <div class="ticker-wrap mb-16">
         <div class="ticker-track">
-            <!-- Continuous Stream Group 1 (Official Files) -->
-            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="" class="ticker-logo-img"> ChatGPT</div>
-            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="" class="ticker-logo-img"> Gemini</div>
-            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="" class="ticker-logo-img"> Claude AI</div>
-            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="" class="ticker-logo-img"> DeepSeek</div>
-            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="" class="ticker-logo-img"> Copilot</div>
-            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="" class="ticker-logo-img"> Grok</div>
-            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="" class="ticker-logo-img"> Apple Intelligence</div>
+            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude AI" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence" class="ticker-logo-img"></div>
 
-            <!-- Continuous Stream Group 2 (Symmetrical Duplicate for Seamless Wrapping Loop) -->
-            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="" class="ticker-logo-img"> ChatGPT</div>
-            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="" class="ticker-logo-img"> Gemini</div>
-            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="" class="ticker-logo-img"> Claude AI</div>
-            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="" class="ticker-logo-img"> DeepSeek</div>
-            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="" class="ticker-logo-img"> Copilot</div>
-            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="" class="ticker-logo-img"> Grok</div>
-            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="" class="ticker-logo-img"> Apple Intelligence</div>
+            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude AI" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok" class="ticker-logo-img"></div>
+            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence" class="ticker-logo-img"></div>
         </div>
     </div>
 
-    <!-- PROMPT EXTRACTION VIEW -->
     <section id="get-prompt" class="py-12 px-6 max-w-5xl mx-auto scroll-mt-24">
         <div class="vintage-frame p-6 md:p-8 rounded-sm shadow-md">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b-2 border-[#3F3C36] pb-4">
@@ -273,7 +256,6 @@
         </div>
     </section>
 
-    <!-- CONTROL SCHEMATICS LAYOUT -->
     <section id="demo" class="py-12 px-6 max-w-5xl mx-auto scroll-mt-24">
         <div class="w-full rounded-sm vintage-frame overflow-hidden shadow-xl">
             <div class="bg-white px-5 py-4 border-b-2 border-[#3F3C36] flex items-center justify-between">
@@ -298,9 +280,8 @@
         </div>
     </section>
 
-    <!-- GLOBAL COMPONENT JAVASCRIPT LOGIC DIRECTIVE -->
     <script>
-        // Trigger Popup Modal displays safely on document initialization
+        // Trigger Popup Modal automatically on page initialization
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(openTribute, 400);
         });
@@ -321,7 +302,7 @@
             }
         }
 
-        // Clip data transmission copying pipeline setup
+        // Clipboard Copy Utility Setup
         function copyPrompt() {
             const copyTextString = document.getElementById("targetPrompt").innerText;
             
