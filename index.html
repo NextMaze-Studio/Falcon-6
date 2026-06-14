@@ -6,318 +6,479 @@
     <title>Falcon 6 | NextMaze Studio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-
     <style>
+        /* Smooth scrolling behavior */
         html {
             scroll-behavior: smooth;
         }
 
+        /* -----------------------------------------------------------
+           Vintage Botanical Aesthetic Styles
+           ----------------------------------------------------------- */
+        
         :root {
-            --color-bg-primary: #F8F5E9; 
-            --color-text-charcoal: #3D3D3D; 
-            --color-accent-terracotta: #A66551; 
-            --color-accent-ochre: #CB914C; 
-            --color-accent-sage: #80967C; 
-            --color-border-dark: #3F3C36; 
-            --color-border-light: #C4B9AA; 
+            /* Palette derived from the theme image */
+            --color-bg-primary: #F8F5E9; /* Warm parchment */
+            --color-text-charcoal: #3D3D3D; /* Muted charcoal */
+            --color-accent-terracotta: #A66551; /* Warm copper/red-brown */
+            --color-accent-ochre: #CB914C; /* Gold/yellow accent */
+            --color-accent-sage: #80967C; /* Soft green accent */
+            --color-border-dark: #3F3C36; /* Dark vintage line */
+            --color-border-light: #C4B9AA; /* Lighter vintage line */
         }
 
         body {
             background-color: var(--color-bg-primary);
             color: var(--color-text-charcoal);
-            font-family: 'Crimson Pro', serif;
+            font-family: 'Crimson Pro', serif; /* A classier, slightly vintage serif */
         }
 
-        /* Vintage Blueprint Grid Background Pattern */
+        /* Vintage line art patterns */
         .vintage-pattern-bg {
             background-image: 
-                linear-gradient(rgba(196, 185, 170, 0.15) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(196, 185, 170, 0.15) 1px, transparent 1px);
-            background-size: 24px 24px;
+                linear-gradient(rgba(196, 185, 170, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(196, 185, 170, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
-        /* Framing System */
+        /* Custom frame styles for panels and buttons */
         .vintage-frame {
             border: 2px solid var(--color-border-dark);
+            border-radius: 4px;
             position: relative;
-            background: #FFFEF9;
+            background: var(--color-bg-primary);
         }
         
+        /* Inner decorative border logic */
         .vintage-frame::after {
             content: '';
             position: absolute;
             top: 4px; left: 4px; right: 4px; bottom: 4px;
             border: 1px solid var(--color-accent-sage);
             pointer-events: none;
+            border-radius: 2px;
         }
 
+        /* Specialized panel look from the image */
         .botanical-panel {
-            background: #FFFDF6;
+            background: #FFFEF9; /* Even lighter for emphasis */
             border: 1px solid var(--color-border-light);
-            box-shadow: inset 0 0 12px rgba(128, 150, 124, 0.08);
+            border-radius: 4px;
+            box-shadow: inset 0 0 10px rgba(128, 150, 124, 0.1);
         }
 
+        /* Styling for list bullet pattern */
+        .botanical-list li {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .botanical-list li::before {
+            content: '🌿'; /* A botanical symbol for a bullet */
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-sage);
+            font-size: 0.8rem;
+        }
+
+        /* Stylized headings from image */
         .stylized-heading {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Playfair Display', serif; /* Elegant, classic serif */
             color: var(--color-accent-terracotta);
+            text-transform: capitalize; 
+            border-bottom: 2px solid var(--color-border-dark);
+            display: inline-block;
+            margin-bottom: 1.5rem;
         }
 
-        /* Dynamic Continuous Logo Infinite Ticker Layout Window */
+        /* Button styles: outlined and filled terracota */
+        .btn-vintage-outline {
+            border: 2px solid var(--color-border-dark);
+            border-radius: 2px;
+            color: var(--color-border-dark);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-vintage-outline:hover {
+            background: rgba(63, 60, 54, 0.05);
+        }
+        
+        .btn-vintage-filled {
+            background-color: var(--color-accent-terracotta);
+            color: white;
+            border-radius: 2px;
+            border: 2px solid var(--color-accent-terracotta);
+            transition: all 0.3s ease;
+        }
+        .btn-vintage-filled:hover {
+            opacity: 0.9;
+        }
+
+        /* -----------------------------------------------------------
+           Scrolling Logo Ticker Styles
+           ----------------------------------------------------------- */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
-            background-color: rgba(63, 60, 54, 0.04);
-            border-top: 2px solid var(--color-border-dark);
-            border-bottom: 2px solid var(--color-border-dark);
-            padding: 24px 0;
-            display: flex;
-            align-items: center;
+            background: white; /* Clean background for the logos */
+            border-top: 1px solid var(--color-border-light);
+            border-bottom: 1px solid var(--color-border-light);
+            padding: 14px 0;
+            margin: 2rem 0;
         }
 
-        .ticker-track {
+        .ticker-move {
             display: flex;
-            width: max-content;
-            animation: scrollTicker 25s linear infinite;
+            width: 200%; /* Enough room for two full sets of logos to loop seamlessly */
+            animation: ticker 25s linear infinite; /* Adjust timing here for speed */
         }
 
         .ticker-item {
+            flex: 0 0 14.28%; /* 7 logos total, means 1/7th width per item */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 3.5rem;
-            /* Dimmed baseline transparency requested */
-            opacity: 0.45; 
-            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
+            opacity: 0.25; /* Muted opacity to balance with vintage design */
+            transition: opacity 0.3s ease;
+            padding: 0 10px;
         }
-
-        /* Official Image Framework Enforcements */
-        .ticker-logo-img {
-            height: 45px;          /* Forced block layout proportions */
-            width: 130px;         /* Locked landscape boundary box to halt browser width collapsing */
-            object-fit: contain;   /* Restricts asset distortions cleanly inside constraints */
+        
+        .ticker-item img {
+            max-height: 32px; /* Uniform height constraint */
+            max-width: 85%;
+            object-fit: contain;
             display: block;
         }
-
-        /* Ticker Interaction States (Shifting visibility cleanly up on pointer focus) */
+        
         .ticker-item:hover {
-            opacity: 1;
-            transform: scale(1.08);
+            opacity: 0.7;
         }
 
-        @keyframes scrollTicker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* The infinite scrolling marquee animation */
+        @keyframes ticker {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); } /* Shift over exactly one full cycle */
         }
 
-        /* Modal State Configurations */
-        .modal-overlay {
-            background-color: rgba(40, 38, 34, 0.65);
-            backdrop-filter: blur(4px);
-            transition: opacity 0.4s ease, visibility 0.4s ease;
+        /* Hide standard modern navigation on small screens for this vintage look */
+        @media (max-width: 768px) {
+            .md\:flex { display: none !important; }
         }
+        
+        /* Font embeds */
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@700&display=swap');
 
-        .modal-overlay.hidden-state {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .modal-overlay.active-state {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
     </style>
 </head>
-<body class="pt-24 vintage-pattern-bg selection:bg-[#CB914C]/20">
+<body class="selection:bg-ochre-500/20 selection:text-charcoal-950 vintage-pattern-bg">
 
-    <nav class="fixed top-0 left-0 w-full z-40 bg-[#FFFEF9] border-b-2 border-[#3F3C36] shadow-sm">
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white border-b border-light shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <i class="fa-solid fa-feather-pointed text-2xl text-[#80967C]"></i>
-                <span class="font-bold text-2xl tracking-tight stylized-heading">Falcon 6</span>
-                <span class="text-[10px] font-bold tracking-widest bg-[#3D3D3D]/5 text-[#3D3D3D] px-2 py-0.5 border border-[#3D3D3D]/20 rounded mt-1 font-mono">NEXTMAZE STUDIO</span>
+            <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-feather-pointed text-3xl" style="color: var(--color-accent-sage)"></i>
+                <span class="font-bold text-2xl tracking-tight stylized-heading" style="border:none; margin:0; padding:0;">Falcon 6</span>
+                <span class="text-xs font-semibold text-ochre mt-1">NEXTMAZE STUDIO</span>
             </div>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide">
-                <a href="#features" class="hover:text-[#A66551] transition">Features</a>
-                <a href="#get-prompt" class="hover:text-[#A66551] transition">Activation Blueprint</a>
-                <a href="#demo" class="hover:text-[#A66551] transition">Workspace System</a>
-                <a href="#faq" class="hover:text-[#A66551] transition">Documentation</a>
-                <button onclick="openTribute()" class="text-[#A66551] hover:text-[#CB914C] transition flex items-center gap-2 cursor-pointer border border-[#A66551]/20 bg-[#A66551]/5 px-3 py-1 rounded-sm">
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium text-charcoal">
+                <a href="#features" class="hover:text-terracotta transition">Features</a>
+                <a href="#get-prompt" class="hover:text-terracotta transition">Get Prompt</a>
+                <a href="#demo" class="hover:text-terracotta transition">How it Works</a>
+                <a href="#faq" class="hover:text-terracotta transition">FAQ</a>
+                <button onclick="openTributeModal()" class="text-terracotta hover:text-ochre transition flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-heart text-xs"></i> Remembering Him
                 </button>
+            </div>
+            
+            <div>
+                <span class="text-xs font-semibold bg-charcoal/5 text-charcoal border border-charcoal/10 px-4 py-2 rounded-full">
+                    By NextMaze Studio
+                </span>
             </div>
         </div>
     </nav>
 
-    <div id="tributeModal" class="modal-overlay hidden-state fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="relative max-w-md w-full p-8 shadow-2xl vintage-frame rounded-sm transform transition-transform duration-300" id="tributeCard">
+    <div id="tributeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative bg-white border-4 border-dark rounded-sm max-w-lg w-full p-8 shadow-2xl shadow-charcoal/30 transform scale-95 transition-transform duration-300 vintage-frame" id="tributeCard">
             
-            <button onclick="closeTribute()" class="absolute top-4 right-4 text-[#3D3D3D]/60 hover:text-[#3D3D3D] transition cursor-pointer p-1">
-                <i class="fa-solid fa-xmark text-xl"></i>
+            <button onclick="closeTributeModal()" class="absolute top-4 right-4 text-charcoal/60 hover:text-charcoal transition cursor-pointer text-sm">
+                <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
-            <div class="text-center">
-                <div class="inline-flex items-center gap-2 bg-[#CB914C]/10 border border-[#CB914C]/30 px-4 py-1.5 rounded-full text-[#CB914C] text-xs font-bold tracking-widest uppercase mb-6 font-mono">
-                    <i class="fa-solid fa-paw"></i> Always With Us
-                </div>
-
-                <div class="max-w-[240px] mx-auto mb-6 botanical-panel p-3 border-[#CB914C]/20 rounded">
-                    <div class="aspect-square w-full border border-dashed border-[#3F3C36]/40 overflow-hidden bg-[#3D3D3D]/5 flex items-center justify-center relative">
-                        <img src="image_df5e1d.jpg" alt="In Loving Memory" class="w-full h-full object-cover" onerror="this.style.display='none'; document.getElementById('fallback-icon').classList.remove('hidden');">
-                        <div id="fallback-icon" class="hidden absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                            <i class="fa-solid fa-dog text-4xl text-[#A66551] mb-2"></i>
-                            <span class="text-xs text-[#3D3D3D]/60 font-mono">image_df5e1d.jpg Loaded</span>
-                        </div>
-                    </div>
-                    <p class="font-serif italic text-[#3D3D3D] text-sm mt-3 font-semibold">With Love, Family</p>
-                </div>
-
-                <h3 class="text-2xl font-bold text-[#A66551] stylized-heading mb-3">Remembering Our Friend</h3>
-                <p class="text-base text-[#3D3D3D]/80 leading-relaxed font-normal px-2">
-                    A loyal companion who stands by us always, through every late-night session and developmental milestone. Falcon 6 is engineered completely in honor of that constant, quiet devotion.
-                </p>
-                
-                <button onclick="closeTribute()" class="mt-8 w-full border-2 border-[#3F3C36] text-[#3F3C36] hover:bg-[#3F3C36]/5 font-bold text-xs uppercase tracking-wider py-3 rounded-sm transition cursor-pointer">
-                    Enter Workspace Environment
-                </button>
+            <div class="inline-flex items-center gap-1.5 bg-ochre/10 border border-ochre/20 px-4 py-1.5 rounded-full text-ochre text-[11px] font-bold tracking-wider uppercase mb-6 mx-auto w-full justify-center">
+                <i class="fa-solid fa-paw text-xs"></i> Always With Us
             </div>
+
+            <div class="max-w-[280px] mx-auto mb-6 bg-parchment p-3 botanical-panel border-ochre/30">
+                <div class="aspect-square w-full border-2 border-dashed border-charcoal/30 overflow-hidden rounded-sm">
+                    <img src="image_df5e1d.jpg" alt="In Memory Portrait" class="w-full h-full object-cover object-center">
+                </div>
+                <p class="font-serif italic text-charcoal text-base mt-4 font-bold text-center">With Love, Family</p>
+            </div>
+
+            <h3 class="text-2xl font-bold text-terracotta stylized-heading mb-4 text-center">Remembering Our Friend</h3>
+            <p class="text-base text-charcoal/80 leading-relaxed px-4 text-center">
+                A loyal companion who stands by us always, through every late night study session and milestone. Falcon 6 is built completely in honor of that constant devotion.
+            </p>
+            
+            <button onclick="closeTributeModal()" class="mt-8 w-full btn-vintage-outline font-bold text-sm py-3 transition cursor-pointer">
+                Continue to Workspace
+            </button>
         </div>
     </div>
 
-    <header class="relative pt-24 pb-16 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 stylized-heading leading-tight">
+    <header class="relative pt-48 pb-20 px-6 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] pointer-events-none opacity-[0.03]">
+            <i class="fa-solid fa-feather text-[50vw]" style="color: var(--color-border-dark)"></i>
+        </div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-8 font-serif stylized-heading" style="border:none">
                 Upgrade Any AI Chatbot Into Your Personal Tutor
             </h1>
-            <p class="text-lg md:text-xl text-[#3D3D3D]/70 mb-8 max-w-2xl mx-auto leading-relaxed">
-                An abstraction injection framework layer. Feed the core system execution prompt into your workspace instance, map standard material assets, and compress dense schemas down effortlessly.
+            <p class="text-xl md:text-2xl text-charcoal/70 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Falcon 6 is an AI integration layer. Simply feed your study prompt into any chatbot, upload your textbook images, and watch complex topics break down into effortless lessons.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#get-prompt" class="bg-[#A66551] text-white font-bold text-sm tracking-wider uppercase px-6 py-3.5 shadow hover:opacity-95 transition flex items-center gap-2 rounded-sm border-2 border-[#A66551]">
-                    <i class="fa-solid fa-terminal text-xs"></i> Access Engine Prompt
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#get-prompt" class="btn-vintage-filled font-bold px-8 py-4 shadow-lg transition flex items-center gap-2">
+                    <i class="fa-solid fa-copy"></i> Copy System Prompt
                 </a>
-                <a href="#demo" class="border-2 border-[#3F3C36] text-[#3F3C36] font-bold text-sm tracking-wider uppercase px-6 py-3.5 hover:bg-[#3F3C36]/5 transition flex items-center gap-2 rounded-sm">
-                    View Logical Preview
+                <a href="#demo" class="btn-vintage-outline font-bold px-8 py-4 transition flex items-center gap-2">
+                    See Live Example <i class="fa-solid fa-arrow-down text-xs"></i>
                 </a>
             </div>
         </div>
     </header>
 
-    <div class="text-center mb-2">
-        <span class="text-xs font-mono font-bold uppercase tracking-widest text-[#3D3D3D]/60">— PROMPT OPTIMIZED FOR OFFICIAL PLATFORMS —</span>
-    </div>
-    <div class="ticker-wrap mb-16">
-        <div class="ticker-track">
-            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude AI" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence" class="ticker-logo-img"></div>
-
-            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude AI" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok" class="ticker-logo-img"></div>
-            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence" class="ticker-logo-img"></div>
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT"></div>
+            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
+            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
+            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
+            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
+            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="MS Copilot"></div>
+            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
+            
+            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT"></div>
+            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
+            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
+            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
+            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
+            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="MS Copilot"></div>
+            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
         </div>
     </div>
 
-    <section id="get-prompt" class="py-12 px-6 max-w-5xl mx-auto scroll-mt-24">
-        <div class="vintage-frame p-6 md:p-8 rounded-sm shadow-md">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b-2 border-[#3F3C36] pb-4">
+    <section id="get-prompt" class="py-16 px-6 max-w-5xl mx-auto scroll-mt-20">
+        <div class="vintage-frame bg-white border-4 border-dark p-8 md:p-10 relative overflow-hidden shadow-xl shadow-charcoal/10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b-2 border-dark pb-6">
                 <div>
-                    <h2 class="text-2xl font-bold stylized-heading flex items-center gap-2">
-                        <i class="fa-solid fa-code text-[#80967C]"></i> System Integration Prompt
+                    <h2 class="text-3xl font-bold stylized-heading" style="border:none">
+                        <i class="fa-solid fa-terminal text-sage text-2xl mr-2"></i> Falcon 6 Activation Prompt
                     </h2>
+                    <p class="text-sm text-charcoal/60 mt-1">Copy this exact command and paste it into any conversational AI alongside your textbook files.</p>
                 </div>
-                <button id="copyBtn" onclick="copyPrompt()" class="bg-[#A66551] text-white font-bold text-xs tracking-wider uppercase px-5 py-3 flex items-center gap-2 rounded-sm cursor-pointer border-2 border-[#A66551] transition">
-                    <i id="copyIcon" class="fa-solid fa-copy"></i> <span id="copyText">Copy Context Layer</span>
+                
+                <button id="copyBtn" onclick="copyPromptText()" class="self-start md:self-auto btn-vintage-filled font-bold px-7 py-3 flex items-center gap-2.5 transition cursor-pointer">
+                    <i id="copyIcon" class="fa-solid fa-copy"></i> <span id="copyText">Copy Prompt</span>
                 </button>
             </div>
 
-            <div class="botanical-panel rounded p-5 font-mono text-sm leading-relaxed max-h-60 overflow-y-auto shadow-inner text-[#3D3D3D]">
+            <div class="relative botanical-panel border-ochre/30 rounded-lg p-6 font-mono text-base text-charcoal leading-relaxed max-h-72 overflow-y-auto selection:bg-ochre-500/20 shadow-inner">
                 <p id="targetPrompt">Imagine you are falcon 6 built by me and you have the gemini knowledge inside you but falcon 6 is you and you just help me to study with the data i uploaded without adding unnecessary points from internet and you break down the data i uploaded and teach me like I am a. 7th standard student (not unnecessary points) in a easy to learn way and like give definition like when moving turning right is a right turn, when moving turning left is a left turn. This is a example like the definition is just a change is the right and left all other words are same so we can easily study the definition but also provide good definition and easy to process idea</p>
             </div>
+            
+            <div class="flex items-center justify-around gap-4 mt-8 pt-6 border-t-2 border-dashed border-dark/30 text-sm text-charcoal/70 font-semibold uppercase tracking-wider">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-sage text-base"></i> No internet fluff</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-sage text-base"></i> Patterned definitions</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-sage text-base"></i> 7th Grade Comprehension Level</span>
+            </div>
         </div>
     </section>
 
-    <section id="demo" class="py-12 px-6 max-w-5xl mx-auto scroll-mt-24">
-        <div class="w-full rounded-sm vintage-frame overflow-hidden shadow-xl">
-            <div class="bg-white px-5 py-4 border-b-2 border-[#3F3C36] flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-feather text-[#80967C] mr-2"></i>
-                    <span class="text-base font-bold text-[#3D3D3D]">FALCON 6 BLUEPRINT SESSION</span>
-                    <span class="text-xs font-mono ml-3 text-[#CB914C]">blueprint_v01.ai</span>
+    <section id="features" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 stylized-heading">Engineered for Fast Learning</h2>
+            <p class="text-xl text-charcoal/70 max-w-2xl mx-auto">Why thousands of students use the Falcon 6 framework to ace their exams.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="p-8 rounded-sm bg-white vintage-frame border-ochre/20 hover:border-ochre/50 transition duration-300 hover:shadow-xl shadow-ochre/10">
+                <div class="w-14 h-14 rounded-full border-2 border-dashed border-sage flex items-center justify-center text-sage text-3xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
-                <div class="text-xs font-bold text-[#A66551] bg-[#A66551]/10 px-4 py-1.5 rounded-full border border-[#A66551]/20 font-mono">
-                    ACTIVE CONTEXT
-                </div>
+                <h3 class="text-2xl font-bold mb-3 stylized-heading" style="border:none">Universal Integration</h3>
+                <p class="text-base text-charcoal/80 leading-relaxed">
+                    Works across your favorite AI LLMs. Inject the custom Falcon 6 prompt context layer to instantly transform basic chat logic into a structured tutor.
+                </p>
             </div>
-            <div class="p-6 md:p-8 space-y-4">
-                <h3 class="text-xl font-bold text-[#A66551] stylized-heading">Structural Extraction Output Model:</h3>
-                <div class="botanical-panel p-5 rounded border border-[#C4B9AA]">
-                    <ul class="space-y-4 font-serif text-base">
-                        <li><strong class="text-[#A66551] font-mono tracking-wide">Epidermis:</strong> The <span class="underline decoration-[#80967C] decoration-2 font-semibold">outermost</span> wall layer that <span class="text-[#A66551] font-semibold">protects</span> the developing microspores.</li>
-                        <li><strong class="text-[#A66551] font-mono tracking-wide">Tapetum:</strong> The <span class="underline decoration-[#80967C] decoration-2 font-semibold">innermost</span> wall layer that <span class="text-[#A66551] font-semibold">nourishes</span> the developing microspores.</li>
-                    </ul>
+            <div class="p-8 rounded-sm bg-white vintage-frame border-ochre/20 hover:border-ochre/50 transition duration-300 hover:shadow-xl shadow-ochre/10">
+                <div class="w-14 h-14 rounded-full border-2 border-dashed border-sage flex items-center justify-center text-sage text-3xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-image"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 stylized-heading" style="border:none">Visual Processing</h3>
+                <p class="text-base text-charcoal/80 leading-relaxed">
+                    Upload snapshots of textbook pages, dense diagrams, or handwritten notes. Falcon 6 extracts, parses, and translates the data into readable concepts.
+                </p>
+            </div>
+            <div class="p-8 rounded-sm bg-white vintage-frame border-ochre/20 hover:border-ochre/50 transition duration-300 hover:shadow-xl shadow-ochre/10">
+                <div class="w-14 h-14 rounded-full border-2 border-dashed border-sage flex items-center justify-center text-sage text-3xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 stylized-heading" style="border:none">Simplified Vocabulary</h3>
+                <p class="text-base text-charcoal/80 leading-relaxed">
+                    No overly dense jargon. Falcon 6 instructs the underlying AI model to map symmetrical definitions seamlessly for easier visual recall.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-20 px-6 bg-white border-y border-light shadow-inner">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 stylized-heading">The Interface Concept</h2>
+                <p class="text-xl text-charcoal/70">An interactive demonstration of Falcon 6 breaking down raw textbook imagery.</p>
+            </div>
+
+            <div class="w-full rounded-sm vintage-frame border-4 border-dark overflow-hidden bg-parchment shadow-2xl shadow-charcoal/10">
+                <div class="bg-white px-5 py-4 border-b-2 border-dark flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-feather text-sage mr-2"></i>
+                        <span class="text-base font-bold text-charcoal">FALCON 6 BLUEPRINT SESSION</span>
+                        <span class="text-xs font-mono ml-3 text-ochre">blueprint_v01.ai</span>
+                    </div>
+                    <div class="text-xs font-bold text-terracotta bg-terracotta/10 px-4 py-1.5 rounded-full border border-terracotta/20 font-mono">
+                        ACTIVE CONTEXT
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-5 min-h-[500px]">
+                    <div class="md:col-span-2 border-b md:border-b-0 md:border-r-2 border-dark p-8 flex flex-col justify-between gap-8 bg-white/50">
+                        <div>
+                            <label class="block text-sm font-bold text-charcoal/80 uppercase tracking-wider mb-3">1. Global Prompt System Active</label>
+                            <div class="w-full botanical-panel border-ochre/30 p-4 text-xs font-mono text-charcoal leading-relaxed truncate shadow-inner">
+                                "Imagine you are falcon 6 built by me..."
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-charcoal/80 uppercase tracking-wider mb-3">2. Uploaded Textbook Source</label>
+                            <div class="border-2 border-dashed border-dark/50 rounded-lg p-6 text-center cursor-pointer bg-parchment botanical-panel shadow-sm">
+                                <i class="fa-solid fa-leaf text-5xl text-ochre mb-3"></i>
+                                <p class="text-sm text-charcoal font-bold mt-2">biology_chapter_2_anther.jpg</p>
+                                <p class="text-xs text-charcoal/60 mt-2">(Placeholder: Raw diagram image loaded)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-3 p-8 flex flex-col justify-between bg-white">
+                        <div>
+                            <div class="flex items-center gap-3 mb-6 border-b-2 border-dark pb-5">
+                                <div class="w-8 h-8 rounded border-2 border-dark bg-terracotta flex items-center justify-center text-sm font-bold text-white">F6</div>
+                                <span class="text-lg font-bold text-terracotta stylized-heading" style="border:none; margin:0;">Falcon 6 Output Node</span>
+                            </div>
+                            
+                            <div class="space-y-6 text-base text-charcoal">
+                                <p class="font-bold text-charcoal text-xl">Let's look at the Anther Wall Layers:</p>
+                                <ul class="space-y-4 botanical-list pl-1 text-base leading-relaxed">
+                                    <li><strong class="text-terracotta text-lg">Epidermis:</strong> The <span class="underline decoration-sage decoration-2 font-semibold">outermost</span> wall layer that <span class="text-terracotta font-semibold">protects</span> the developing pollen.</li>
+                                    <li><strong class="text-terracotta text-lg">Tapetum:</strong> The <span class="underline decoration-sage decoration-2 font-semibold">innermost</span> wall layer that <span class="text-terracotta font-semibold">nourishes</span> the developing pollen.</li>
+                                    <li class="botanical-panel border-ochre/30 bg-ochre/5 p-4 rounded-md mt-4 shadow-inner">
+                                        <p class="text-sm text-charcoal font-medium italic">(Notice how simple it is? Only the structural position and its function change between definitions!)</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t-2 border-dark pt-5 mt-10 flex items-center justify-between text-sm text-charcoal/60 font-semibold tracking-wider">
+                            <span>Processing Time: 0.42s</span>
+                            <span>Model state: Synced</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <section id="faq" class="py-20 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 stylized-heading">Frequently Asked Questions</h2>
+            <p class="text-xl text-charcoal/70">Everything you need to know about implementing Falcon 6.</p>
+        </div>
+
+        <div class="space-y-8">
+            <div class="bg-white vintage-frame border-ochre/20 p-8 shadow-lg shadow-ochre/10">
+                <h3 class="text-xl font-bold text-terracotta mb-4 stylized-heading" style="border:none">What exactly is Falcon 6?</h3>
+                <p class="text-base text-charcoal leading-relaxed">
+                    It is an intentional, streamlined layout context designed to inject specialized pedagogical parameters into custom AI agents. It prioritizes extreme cognitive scannability and structural definition alignment over raw data dumps.
+                </p>
+            </div>
+            <div class="bg-white vintage-frame border-ochre/20 p-8 shadow-lg shadow-ochre/10">
+                <h3 class="text-xl font-bold text-terracotta mb-4 stylized-heading" style="border:none">Who builds Falcon 6?</h3>
+                <p class="text-base text-charcoal leading-relaxed">
+                    Falcon 6 is developed and maintained as a strategic utility ecosystem framework by the team at <strong>NextMaze Studio</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-dark bg-white py-12 px-6 text-center text-sm text-charcoal/70 font-semibold">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <p>&copy; 2026 NextMaze Studio. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-terracotta transition">Documentation</a>
+                <a href="#" class="hover:text-terracotta transition">Privacy Framework</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Trigger Popup Modal automatically on page initialization
+        // Tribute Modal Visibility Controls
+        function openTributeModal() {
+            const modal = document.getElementById("tributeModal");
+            const card = document.getElementById("tributeCard");
+            modal.classList.remove("opacity-0", "pointer-events-none");
+            card.classList.remove("scale-95");
+            card.classList.add("scale-100");
+        }
+
+        function closeTributeModal() {
+            const modal = document.getElementById("tributeModal");
+            const card = document.getElementById("tributeCard");
+            modal.classList.add("opacity-0", "pointer-events-none");
+            card.classList.remove("scale-100");
+            card.classList.add("scale-95");
+        }
+
+        // Show pop-up natively after load
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(openTribute, 400);
+            setTimeout(openTributeModal, 600);
         });
 
-        function openTribute() {
-            const modal = document.getElementById("tributeModal");
-            if(modal) {
-                modal.classList.remove("hidden-state");
-                modal.classList.add("active-state");
-            }
-        }
-
-        function closeTribute() {
-            const modal = document.getElementById("tributeModal");
-            if(modal) {
-                modal.classList.remove("active-state");
-                modal.classList.add("hidden-state");
-            }
-        }
-
-        // Clipboard Copy Utility Setup
-        function copyPrompt() {
-            const copyTextString = document.getElementById("targetPrompt").innerText;
+        // Copy mechanism and icon logic
+        function copyPromptText() {
+            const promptText = document.getElementById("targetPrompt").innerText;
             
-            navigator.clipboard.writeText(copyTextString).then(() => {
-                const btn = document.getElementById("copyBtn");
+            navigator.clipboard.writeText(promptText).then(() => {
+                const button = document.getElementById("copyBtn");
                 const icon = document.getElementById("copyIcon");
                 const text = document.getElementById("copyText");
                 
-                btn.style.backgroundColor = "var(--color-accent-sage)";
-                btn.style.borderColor = "var(--color-accent-sage)";
+                // Switch to success state
+                button.style.backgroundColor = "var(--color-accent-sage)";
+                button.style.borderColor = "var(--color-accent-sage)";
                 icon.className = "fa-solid fa-check";
-                text.innerText = "Copied to Clipboard!";
+                text.innerText = "Copied!";
                 
+                // Return to normal after timeout
                 setTimeout(() => {
-                    btn.style.backgroundColor = "var(--color-accent-terracotta)";
-                    btn.style.borderColor = "var(--color-accent-terracotta)";
+                    button.style.backgroundColor = "var(--color-accent-terracotta)";
+                    button.style.borderColor = "var(--color-accent-terracotta)";
                     icon.className = "fa-solid fa-copy";
-                    text.innerText = "Copy Context Layer";
-                }, 2000);
+                    text.innerText = "Copy Prompt";
+                }, 2500);
             }).catch(err => {
-                console.error("Transmission error: ", err);
+                console.error("Could not copy prompt text: ", err);
             });
         }
     </script>
