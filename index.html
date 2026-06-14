@@ -114,46 +114,57 @@
         }
 
         /* -----------------------------------------------------------
-           NEW: Scrolling Logo Ticker Styles (Req. 2 & 3)
+           NEW: Logos Bar CSS (Req. 2 & 3)
            ----------------------------------------------------------- */
-        .ticker-wrap {
+        .logos-bar-wrap {
             width: 100%;
             overflow: hidden;
-            background: white; /* Clean background for the logos */
-            border-top: 1px solid var(--color-border-light);
-            border-bottom: 1px solid var(--color-border-light);
+            background-color: rgba(63, 60, 54, 0.08); /* Semi-transparent dark background (Req. 2) */
+            border-top: 1px solid var(--color-border-dark); /* Decorative border (Req. 3) */
+            border-bottom: 1px solid var(--color-border-dark); /* Decorative border (Req. 3) */
             padding: 10px 0;
             margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space out text and logos (Req. 3) */
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .logos-bar-text {
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.85rem;
+            color: var(--color-text-charcoal);
+            font-weight: 300; /* Thin (Req. 3) */
+            font-style: italic; /* Italicized (Req. 3) */
+            opacity: 0.8; /* Subtle text (Req. 2) */
         }
 
         .ticker-move {
             display: flex;
-            width: 200%; /* Enough room for two full sets of logos to loop */
-            animation: ticker 30s linear infinite; /* Time for one full set to move across */
+            animation: ticker 25s linear infinite; /* Adjust speed here (Req. 3) */
         }
 
         .ticker-item {
-            flex: 0 0 14.28%; /* 7 logos, so roughly 1/7th width */
+            flex: 0 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0.15; /* Req. 2: Low opacity */
             transition: opacity 0.3s ease;
+            padding: 0 1rem;
         }
-        
-        .ticker-item img {
-            max-height: 35px; /* Size constraint */
-            display: block;
-        }
-        
-        /* Optional interaction: brighten on hover */
         .ticker-item:hover {
-            opacity: 0.5;
+            opacity: 0.5; /* Subtle highlight on hover */
         }
 
-        /* The scrolling animation */
+        .ticker-item img {
+            max-height: 25px; /* Size constraint (Req. 3) */
+            display: block;
+        }
+
         @keyframes ticker {
-            0% { transform: translateX(0%); }
+            0% { transform: translateX(0); }
             100% { transform: translateX(-50%); } /* Shift one full set width */
         }
 
@@ -247,22 +258,26 @@
         </div>
     </header>
 
-    <div class="ticker-wrap">
-        <div class="ticker-move">
-            <div class="ticker-item"><img src="logo_chatgpt_light.png" alt="ChatGPT"></div>
-            <div class="ticker-item"><img src="logo_gemini_light.png" alt="Gemini"></div>
-            <div class="ticker-item"><img src="logo_claude_light.png" alt="Claude"></div>
-            <div class="ticker-item"><img src="logo_deepseek_light.png" alt="DeepSeek"></div>
-            <div class="ticker-item"><img src="logo_grok_light.png" alt="Grok"></div>
-            <div class="ticker-item"><img src="logo_perplexity_light.png" alt="Perplexity"></div>
-            <div class="ticker-item"><img src="logo_copilot_light.png" alt="MS Copilot"></div>
-            <div class="ticker-item"><img src="logo_chatgpt_light.png" alt="ChatGPT"></div>
-            <div class="ticker-item"><img src="logo_gemini_light.png" alt="Gemini"></div>
-            <div class="ticker-item"><img src="logo_claude_light.png" alt="Claude"></div>
-            <div class="ticker-item"><img src="logo_deepseek_light.png" alt="DeepSeek"></div>
-            <div class="ticker-item"><img src="logo_grok_light.png" alt="Grok"></div>
-            <div class="ticker-item"><img src="logo_perplexity_light.png" alt="Perplexity"></div>
-            <div class="ticker-item"><img src="logo_copilot_light.png" alt="MS Copilot"></div>
+        <div class="logos-bar-wrap">
+        <div class="logos-bar-text">Prompt Optimized for:</div>
+        <div class="ticker-container overflow-hidden w-full max-w-[70%]">
+            <div class="ticker-move flex">
+                                <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT"></div>
+                <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
+                <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
+                <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
+                <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot"></div>
+                <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
+                <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
+                
+                                <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT"></div>
+                <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
+                <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
+                <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
+                <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot"></div>
+                <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
+                <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
+            </div>
         </div>
     </div>
 
@@ -434,7 +449,7 @@
         function openTributeModal() {
             const modal = document.getElementById("tributeModal");
             const card = document.getElementById("tributeCard");
-            modal.classList.remove("opacity-0", "pointer-events-none");
+  *modal.classList.remove("opacity-0", "pointer-events-none");
             card.classList.remove("scale-95");
             card.classList.add("scale-100");
         }
