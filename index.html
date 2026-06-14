@@ -11,17 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* Official Logo Image Layout Properties */
-.ticker-logo-img {
-    height: 38px;
-    width: 120px;          /* Enforces rigid width footprint so the browser cannot collapse it */
-    object-fit: contain;   /* Scales the logo image inside the footprint without warping */
-    display: inline-block; /* Forces rendering engine allocation */
-    
-    /* Grayscale blend to match the vintage/blueprint accent aesthetic uniformly */
-    filter: grayscale(100%) contrast(90%);
-    transition: filter 0.3s ease;
-}
         html {
             scroll-behavior: smooth;
         }
@@ -98,18 +87,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 4rem;
-            /* Low-opacity requested for base state */
+            padding: 0 3.5rem;
+            /* Low-opacity baseline visibility requested */
             opacity: 0.35; 
             transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
         }
 
-        /* Official Logo Image Layout Properties */
+        /* Official Logo Image Layout Properties - FIXED COLLAPSE TYPE */
         .ticker-logo-img {
             height: 38px;
-            width: auto;
-            object-fit: contain;
-            /* Grayscale blend to match the vintage/blueprint accent aesthetic uniformly */
+            width: 120px;          /* Forced fixed footprint size preventing collapse */
+            object-fit: contain;   /* Safely scales your graphics without distorting */
+            display: inline-block; /* Forces raw block render area assignment */
+            
+            /* Grayscale blend to match the vintage/blueprint aesthetic uniformly */
             filter: grayscale(100%) contrast(90%);
             transition: filter 0.3s ease;
         }
