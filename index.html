@@ -147,7 +147,7 @@
             max-width: 85%;
             object-fit: contain;
             display: block;
-            }
+        }
         
         .ticker-item:hover {
             opacity: 0.7;
@@ -184,7 +184,10 @@
                 <a href="#get-prompt" class="hover:text-terracotta transition">Get Prompt</a>
                 <a href="#demo" class="hover:text-terracotta transition">How it Works</a>
                 <a href="#faq" class="hover:text-terracotta transition">FAQ</a>
-                <button onclick="openTributeModal()" class="text-terracotta hover:text-ochre transition flex items-center gap-1.5 cursor-pointer">
+                <button onclick="openFeedbackModal()" class="hover:text-terracotta transition flex items-center gap-1.5 cursor-pointer bg-none border-none p-0 font-medium">
+                    <i class="fa-solid fa-comments text-xs"></i> Feedback
+                </button>
+                <button onclick="openTributeModal()" class="text-terracotta hover:text-ochre transition flex items-center gap-1.5 cursor-pointer bg-none border-none p-0 font-medium">
                     <i class="fa-solid fa-heart text-xs"></i> Remembering Him
                 </button>
             </div>
@@ -223,6 +226,32 @@
             <button onclick="closeTributeModal()" class="mt-8 w-full btn-vintage-outline font-bold text-sm py-3 transition cursor-pointer">
                 Continue to Workspace
             </button>
+        </div>
+    </div>
+
+    <div id="feedbackModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative bg-white border-4 border-dark rounded-sm max-w-lg w-full p-8 shadow-2xl shadow-charcoal/30 transform scale-95 transition-transform duration-300 vintage-frame" id="feedbackCard">
+            
+            <button onclick="closeFeedbackModal()" class="absolute top-4 right-4 text-charcoal/60 hover:text-charcoal transition cursor-pointer text-sm">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 class="text-2xl font-bold text-terracotta stylized-heading mb-2 text-center">Share Your Thoughts</h3>
+            <p class="text-sm text-charcoal/60 text-center mb-6">Help us refine the Falcon 6 setup. Your insight goes directly to our development team.</p>
+            
+            <form id="discordFeedbackForm" onsubmit="sendFeedback(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-charcoal/70 mb-1 font-mono">Your Name / Handle (Optional)</label>
+                    <input type="text" id="feedbackName" placeholder="e.g., ScholarAnon" class="w-full px-4 py-2 border-2 border-light rounded-sm bg-[#FFFEF9] font-mono text-sm focus:outline-none focus:border-dark transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-charcoal/70 mb-1 font-mono">Feedback Message *</label>
+                    <textarea id="feedbackMessage" rows="4" required placeholder="What features should we add or fix next?" class="w-full px-4 py-2 border-2 border-light rounded-sm bg-[#FFFEF9] font-mono text-sm focus:outline-none focus:border-dark transition resize-none"></textarea>
+                </div>
+                <button type="submit" id="feedbackSubmitBtn" class="w-full btn-vintage-filled font-bold text-sm py-3 transition cursor-pointer">
+                    Submit to Discord Studio
+                </button>
+            </form>
         </div>
     </div>
 
@@ -410,7 +439,7 @@
             <div class="bg-white vintage-frame border-ochre/20 p-8 shadow-lg shadow-ochre/10">
                 <h3 class="text-xl font-bold text-terracotta mb-4 stylized-heading" style="border:none">What exactly is Falcon 6?</h3>
                 <p class="text-base text-charcoal leading-relaxed">
-                    It is an intentional, streamlined layout context designed to inject specialized pedagogical parameters into custom AI agents. It priorities extreme cognitive scannability and structural definition alignment over raw data dumps.
+                    It is an intentional, streamlined layout context designed to inject specialized pedagogical parameters into custom AI agents. It prioritizes extreme cognitive scannability and structural definition alignment over raw data dumps.
                 </p>
             </div>
             <div class="bg-white vintage-frame border-ochre/20 p-8 shadow-lg shadow-ochre/10">
@@ -433,6 +462,12 @@
     </footer>
 
     <script>
+        // -----------------------------------------------------------
+        // CONFIGURATION: Set your Discord properties here
+        // -----------------------------------------------------------
+        const DISCORD_WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_URL_HERE"; 
+        const DISCORD_ROLE_ID = "YOUR_ROLE_ID_HERE"; // Numbers only, e.g., "1122334455667788"
+
         // Tribute Modal Visibility Controls
         function openTributeModal() {
             const modal = document.getElementById("tributeModal");
@@ -445,6 +480,23 @@
         function closeTributeModal() {
             const modal = document.getElementById("tributeModal");
             const card = document.getElementById("tributeCard");
+            modal.classList.add("opacity-0", "pointer-events-none");
+            card.classList.remove("scale-100");
+            card.classList.add("scale-95");
+        }
+
+        // Feedback Modal Visibility Controls
+        function openFeedbackModal() {
+            const modal = document.getElementById("feedbackModal");
+            const card = document.getElementById("feedbackCard");
+            modal.classList.remove("opacity-0", "pointer-events-none");
+            card.classList.remove("scale-95");
+            card.classList.add("scale-100");
+        }
+
+        function closeFeedbackModal() {
+            const modal = document.getElementById("feedbackModal");
+            const card = document.getElementById("feedbackCard");
             modal.classList.add("opacity-0", "pointer-events-none");
             card.classList.remove("scale-100");
             card.classList.add("scale-95");
@@ -479,6 +531,78 @@
                 }, 2500);
             }).catch(err => {
                 console.error("Could not copy prompt text: ", err);
+            });
+        }
+
+        // -----------------------------------------------------------
+        // Webhook Submission Logic
+        // -----------------------------------------------------------
+        function sendFeedback(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById("feedbackName").value.trim();
+            const messageInput = document.getElementById("feedbackMessage").value.trim();
+            const submitBtn = document.getElementById("feedbackSubmitBtn");
+
+            const username = nameInput || "Anonymous Scholar";
+
+            // Guard check for setup configurations
+            if(DISCORD_WEBHOOK_URL === "https://discord.com/api/webhooks/1515795446063431691/HNqfa9ION337C0qa023uzp_4Tf8T6mYZrAqPDHCw9RchQ4eoHGdEo1rUguykwtmSj6Lf") {
+                alert("Developer Note: Please configure the DISCORD_WEBHOOK_URL script variable to receive submissions.");
+                return;
+            }
+
+            // Update button UI state during flight
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Transmitting to Channel...";
+
+            // Payload structures using Discord embeds
+            const payload = {
+                content: `<@&${DISCORD_ROLE_ID}> New Falcon 6 feedback received!`,
+                embeds: [
+                    {
+                        title: "📝 User Review Influx",
+                        color: 10904913, // Terracotta decimal signature color equivalent (#A66551)
+                        fields: [
+                            { name: "Sender", value: username, inline: true },
+                            { name: "Workspace Node", value: "Falcon 6 Landing Page", inline: true },
+                            { name: "Message", value: messageInput }
+                        ],
+                        footer: { text: "NextMaze Studio System Logs" },
+                        timestamp: new Date().toISOString()
+                    }
+                ]
+            };
+
+            fetch(DISCORD_WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (!response.ok) throw new Error("Network validation dropped.");
+                
+                // Success State Modification
+                submitBtn.style.backgroundColor = "var(--color-accent-sage)";
+                submitBtn.style.borderColor = "var(--color-accent-sage)";
+                submitBtn.innerText = "Dispatched Successfully!";
+                
+                document.getElementById("discordFeedbackForm").reset();
+
+                setTimeout(() => {
+                    closeFeedbackModal();
+                    // Restore button configurations
+                    submitBtn.disabled = false;
+                    submitBtn.style.backgroundColor = "var(--color-accent-terracotta)";
+                    submitBtn.style.borderColor = "var(--color-accent-terracotta)";
+                    submitBtn.innerText = "Submit to Discord Studio";
+                }, 1500);
+            })
+            .catch(error => {
+                console.error("Transmission failed: ", error);
+                alert("Could not process payload pipeline. Verify connectivity metrics.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Submit to Discord Studio";
             });
         }
     </script>
