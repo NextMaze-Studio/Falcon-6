@@ -11,210 +11,383 @@
         html {
             scroll-behavior: smooth;
         }
-        /* Custom frosted glass effect */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+
+        /* -----------------------------------------------------------
+           NEW: Vintage Botanical Aesthetic Styles (Based on image_0.png)
+           ----------------------------------------------------------- */
+        
+        :root {
+            /* Palette derived from the provided image */
+            --color-bg-primary: #F8F5E9; /* Warm parchment */
+            --color-text-charcoal: #3D3D3D; /* Muted charcoal */
+            --color-accent-terracotta: #A66551; /* Warm copper/red-brown */
+            --color-accent-ochre: #CB914C; /* Gold/yellow accent */
+            --color-accent-sage: #80967C; /* Soft green accent */
+            --color-border-dark: #3F3C36; /* Dark vintage line */
+            --color-border-light: #C4B9AA; /* Lighter vintage line */
         }
+
+        body {
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-charcoal);
+            font-family: 'Crimson Pro', serif; /* A classier, slightly vintage serif */
+        }
+
+        /* Vintage line art patterns (placeholder or simplified) */
+        .vintage-pattern-bg {
+            background-image: 
+                linear-gradient(rgba(196, 185, 170, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(196, 185, 170, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Custom frame styles for panels and buttons */
+        .vintage-frame {
+            border: 2px solid var(--color-border-dark);
+            border-radius: 4px;
+            position: relative;
+            background: var(--color-bg-primary);
+        }
+        
+        /* Inner decorative border logic */
+        .vintage-frame::after {
+            content: '';
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border: 1px solid var(--color-accent-sage);
+            pointer-events: none;
+            border-radius: 2px;
+        }
+
+        /* Specialized panel look from the image (like "Anther Wall Layers") */
+        .botanical-panel {
+            background: #FFFEF9; /* Even lighter for emphasis */
+            border: 1px solid var(--color-border-light);
+            border-radius: 4px;
+            box-shadow: inset 0 0 10px rgba(128, 150, 124, 0.1);
+        }
+
+        /* Styling for list bullet pattern */
+        .botanical-list li {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .botanical-list li::before {
+            content: '🌿'; /* A botanical symbol for a bullet */
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-sage);
+            font-size: 0.8rem;
+        }
+
+        /* Stylized headings from image */
+        .stylized-heading {
+            font-family: 'Playfair Display', serif; /* Elegant, classic serif */
+            color: var(--color-accent-terracotta);
+            text-transform: capitalize; /* Like 'Engineered For Learning' */
+            border-bottom: 2px solid var(--color-border-dark);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Button styles: outlined and filled terracota */
+        .btn-vintage-outline {
+            border: 2px solid var(--color-border-dark);
+            border-radius: 2px;
+            color: var(--color-border-dark);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-vintage-outline:hover {
+            background: rgba(63, 60, 54, 0.05);
+        }
+        
+        .btn-vintage-filled {
+            background-color: var(--color-accent-terracotta);
+            color: white;
+            border-radius: 2px;
+            border: 2px solid var(--color-accent-terracotta);
+            transition: all 0.3s ease;
+        }
+        .btn-vintage-filled:hover {
+            opacity: 0.9;
+        }
+
+        /* -----------------------------------------------------------
+           NEW: Scrolling Logo Ticker Styles (Req. 2 & 3)
+           ----------------------------------------------------------- */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: white; /* Clean background for the logos */
+            border-top: 1px solid var(--color-border-light);
+            border-bottom: 1px solid var(--color-border-light);
+            padding: 10px 0;
+            margin: 2rem 0;
+        }
+
+        .ticker-move {
+            display: flex;
+            width: 200%; /* Enough room for two full sets of logos to loop */
+            animation: ticker 30s linear infinite; /* Time for one full set to move across */
+        }
+
+        .ticker-item {
+            flex: 0 0 14.28%; /* 7 logos, so roughly 1/7th width */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.15; /* Req. 2: Low opacity */
+            transition: opacity 0.3s ease;
+        }
+        
+        .ticker-item img {
+            max-height: 35px; /* Size constraint */
+            display: block;
+        }
+        
+        /* Optional interaction: brighten on hover */
+        .ticker-item:hover {
+            opacity: 0.5;
+        }
+
+        /* The scrolling animation */
+        @keyframes ticker {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); } /* Shift one full set width */
+        }
+
+        /* Hide standard modern navigation on small screens for this vintage look */
+        @media (max-width: 768px) {
+            .md\:flex { display: none !important; }
+        }
+        
+        /* Font embeds - using more appropriate fonts for the theme */
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@700&display=swap');
+
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white">
+<body class="selection:bg-ochre-500/20 selection:text-charcoal-950 vintage-pattern-bg">
 
-    <nav class="fixed top-0 left-0 w-full z-40 glass-panel border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-feather-pointed text-2xl text-indigo-400"></i>
-                <span class="font-bold text-xl tracking-tight bg-gradient-to-r align-middle from-white to-slate-400 bg-clip-text text-transparent">Falcon 6</span>
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white border-b border-light shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-feather-pointed text-3xl" style="color: var(--color-accent- sage)"></i>
+                <span class="font-bold text-2xl tracking-tight stylized-heading" style="border:none; margin:0; padding:0;">Falcon 6</span>
+                <span class="text-xs font-semibold text-ochre mt-1">NEXTMAZE STUDIO</span>
             </div>
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <button onclick="openTributeModal()" class="text-amber-400 hover:text-amber-300 transition flex items-center gap-1.5 cursor-pointer">
+            
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium text-charcoal">
+                <a href="#features" class="hover:text-terracotta transition">Features</a>
+                <a href="#get-prompt" class="hover:text-terracotta transition">Get Prompt</a>
+                <a href="#demo" class="hover:text-terracotta transition">How it Works</a>
+                <a href="#faq" class="hover:text-terracotta transition">FAQ</a>
+                <button onclick="openTributeModal()" class="text-terracotta hover:text-ochre transition flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-heart text-xs"></i> Remembering Him
                 </button>
-                <a href="#features" class="hover:text-white transition">Features</a>
-                <a href="#get-prompt" class="hover:text-white transition">Get Prompt</a>
-                <a href="#demo" class="hover:text-white transition">How it Works</a>
-                <a href="#faq" class="hover:text-white transition">FAQ</a>
             </div>
+            
             <div>
-                <span class="text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1.5 rounded-full">
+                <span class="text-xs font-semibold bg-charcoal/5 text-charcoal border border-charcoal/10 px-4 py-2 rounded-full">
                     By NextMaze Studio
                 </span>
             </div>
         </div>
     </nav>
 
-    <div id="tributeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="relative bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl shadow-black/50 transform scale-95 transition-transform duration-300" id="tributeCard">
-            <button onclick="closeTributeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition cursor-pointer text-sm">
+    <div id="tributeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative bg-white border-4 border-dark rounded-sm max-w-lg w-full p-8 shadow-2xl shadow-charcoal/30 transform scale-95 transition-transform duration-300 vintage-frame" id="tributeCard">
+            
+            <button onclick="closeTributeModal()" class="absolute top-4 right-4 text-charcoal/60 hover:text-charcoal transition cursor-pointer text-sm">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
-            <div class="inline-flex items-center gap-1 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full text-amber-400 text-[11px] font-medium tracking-wider uppercase mb-4">
+            <div class="inline-flex items-center gap-1.5 bg-ochre/10 border border-ochre/20 px-4 py-1.5 rounded-full text-ochre text-[11px] font-bold tracking-wider uppercase mb-6 mx-auto w-full justify-center">
                 <i class="fa-solid fa-paw text-xs"></i> Always With Us
             </div>
 
-            <div class="bg-white p-3 pb-5 rounded shadow-lg max-w-[220px] mx-auto rotate-1 mb-5 border border-slate-200">
-                <div class="aspect-square w-full bg-slate-100 overflow-hidden rounded-sm">
+            <div class="max-w-[280px] mx-auto mb-6 bg-parchment p-3 botanical-panel border-ochre/30">
+                <div class="aspect-square w-full border-2 border-dashed border-charcoal/30 overflow-hidden rounded-sm">
                     <img src="image_df5e1d.jpg" alt="In Memory Portrait" class="w-full h-full object-cover object-center">
                 </div>
-                <p class="font-serif italic text-slate-800 text-sm mt-3 font-bold">With Love, Family</p>
+                <p class="font-serif italic text-charcoal text-base mt-4 font-bold text-center">With Love, Family</p>
             </div>
 
-            <h3 class="text-lg font-bold text-white mb-2">Remembering Our Friend</h3>
-            <p class="text-xs text-slate-400 leading-relaxed px-2">
+            <h3 class="text-2xl font-bold text-terracotta stylized-heading mb-4 text-center">Remembering Our Friend</h3>
+            <p class="text-base text-charcoal/80 leading-relaxed px-4 text-center">
                 A loyal companion who stands by us always, through every late night study session and milestone. Falcon 6 is built completely in honor of that constant devotion.
             </p>
             
-            <button onclick="closeTributeModal()" class="mt-5 w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs py-2.5 rounded-xl border border-slate-700/60 transition cursor-pointer">
+            <button onclick="closeTributeModal()" class="mt-8 w-full btn-vintage-outline font-bold text-sm py-3 transition cursor-pointer">
                 Continue to Workspace
             </button>
         </div>
     </div>
 
-    <header class="relative pt-32 pb-16 px-4 overflow-hidden">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+    <header class="relative pt-48 pb-20 px-6 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] pointer-events-none opacity-[0.03]">
+            <i class="fa-solid fa-feather text-[50vw]" style="color: var(--color-border-dark)"></i>
+        </div>
         
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-8 font-serif stylized-heading" style="border:none">
                 Upgrade Any AI Chatbot Into Your Personal Tutor
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+            <p class="text-xl md:text-2xl text-charcoal/70 mb-10 max-w-3xl mx-auto leading-relaxed">
                 Falcon 6 is an AI integration layer. Simply feed your study prompt into any chatbot, upload your textbook images, and watch complex topics break down into effortless lessons.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#get-prompt" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-xl shadow-lg shadow-indigo-600/20 transition flex items-center gap-2">
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#get-prompt" class="btn-vintage-filled font-bold px-8 py-4 shadow-lg transition flex items-center gap-2">
                     <i class="fa-solid fa-copy"></i> Copy System Prompt
                 </a>
-                <a href="#demo" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium px-6 py-3 rounded-xl transition flex items-center gap-2">
+                <a href="#demo" class="btn-vintage-outline font-bold px-8 py-4 transition flex items-center gap-2">
                     See Live Example <i class="fa-solid fa-arrow-down text-xs"></i>
                 </a>
             </div>
         </div>
     </header>
 
-    <section id="get-prompt" class="py-12 px-4 max-w-4xl mx-auto scroll-mt-20">
-        <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-indigo-500/30 rounded-2xl p-6 md:p-8 relative overflow-hidden shadow-xl shadow-indigo-950/20">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 blur-[80px] rounded-full pointer-events-none"></div>
-            
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            <div class="ticker-item"><img src="logo_chatgpt_light.png" alt="ChatGPT"></div>
+            <div class="ticker-item"><img src="logo_gemini_light.png" alt="Gemini"></div>
+            <div class="ticker-item"><img src="logo_claude_light.png" alt="Claude"></div>
+            <div class="ticker-item"><img src="logo_deepseek_light.png" alt="DeepSeek"></div>
+            <div class="ticker-item"><img src="logo_grok_light.png" alt="Grok"></div>
+            <div class="ticker-item"><img src="logo_perplexity_light.png" alt="Perplexity"></div>
+            <div class="ticker-item"><img src="logo_copilot_light.png" alt="MS Copilot"></div>
+            <div class="ticker-item"><img src="logo_chatgpt_light.png" alt="ChatGPT"></div>
+            <div class="ticker-item"><img src="logo_gemini_light.png" alt="Gemini"></div>
+            <div class="ticker-item"><img src="logo_claude_light.png" alt="Claude"></div>
+            <div class="ticker-item"><img src="logo_deepseek_light.png" alt="DeepSeek"></div>
+            <div class="ticker-item"><img src="logo_grok_light.png" alt="Grok"></div>
+            <div class="ticker-item"><img src="logo_perplexity_light.png" alt="Perplexity"></div>
+            <div class="ticker-item"><img src="logo_copilot_light.png" alt="MS Copilot"></div>
+        </div>
+    </div>
+
+    <section id="get-prompt" class="py-16 px-6 max-w-5xl mx-auto scroll-mt-20">
+        <div class="vintage-frame bg-white border-4 border-dark p-8 md:p-10 relative overflow-hidden shadow-xl shadow-charcoal/10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b-2 border-dark pb-6">
                 <div>
-                    <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-terminal text-indigo-400 text-lg"></i> Falcon 6 Activation Prompt
+                    <h2 class="text-3xl font-bold stylized-heading" style="border:none">
+                        <i class="fa-solid fa-terminal text-sage text-2xl mr-2"></i> Falcon 6 Activation Prompt
                     </h2>
-                    <p class="text-xs text-slate-400 mt-1">Copy this exact command and paste it into any conversational AI alongside your textbook files.</p>
+                    <p class="text-sm text-charcoal/60 mt-1">Copy this exact command and paste it into any conversational AI alongside your textbook files.</p>
                 </div>
                 
-                <button id="copyBtn" onclick="copyPromptText()" class="self-start md:self-auto bg-indigo-600 hover:bg-indigo-500 active:scale-98 text-white text-sm font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-md transition cursor-pointer">
+                <button id="copyBtn" onclick="copyPromptText()" class="self-start md:self-auto btn-vintage-filled font-bold px-7 py-3 flex items-center gap-2.5 transition cursor-pointer">
                     <i id="copyIcon" class="fa-solid fa-copy"></i> <span id="copyText">Copy Prompt</span>
                 </button>
             </div>
 
-            <div class="relative bg-slate-950 border border-slate-800 rounded-xl p-5 font-mono text-xs md:text-sm text-slate-300 leading-relaxed max-h-60 overflow-y-auto selection:bg-indigo-500/30">
+            <div class="relative botanical-panel border-ochre/30 rounded-lg p-6 font-mono text-base text-charcoal leading-relaxed max-h-72 overflow-y-auto selection:bg-ochre-500/20 shadow-inner">
                 <p id="targetPrompt">Imagine you are falcon 6 built by me and you have the gemini knowledge inside you but falcon 6 is you and you just help me to study with the data i uploaded without adding unnecessary points from internet and you break down the data i uploaded and teach me like I am a. 7th standard student (not unnecessary points) in a easy to learn way and like give definition like when moving turning right is a right turn, when moving turning left is a left turn. This is a example like the definition is just a change is the right and left all other words are same so we can easily study the definition but also provide good definition and easy to process idea</p>
             </div>
             
-            <div class="flex items-center gap-4 mt-4 text-[11px] text-slate-500">
-                <span><i class="fa-solid fa-circle-check text-emerald-500/70 mr-1"></i> No internet fluff</span>
-                <span><i class="fa-solid fa-circle-check text-emerald-500/70 mr-1"></i> Patterned definitions</span>
-                <span><i class="fa-solid fa-circle-check text-emerald-500/70 mr-1"></i> 7th Grade Comprehension Level</span>
+            <div class="flex items-center justify-around gap-4 mt-8 pt-6 border-t-2 border-dashed border-dark/30 text-sm text-charcoal/70 font-semibold uppercase tracking-wider">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-sage text-base"></i> No internet fluff</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-sage text-base"></i> Patterned definitions</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-sage text-base"></i> 7th Grade Comprehension Level</span>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-16 px-4 max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-2xl md:text-4xl font-bold mb-4">Engineered for Fast Learning</h2>
-            <p class="text-slate-400">Why thousands of students use the Falcon 6 framework to ace their exams.</p>
+    <section id="features" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 stylized-heading">Engineered for Fast Learning</h2>
+            <p class="text-xl text-charcoal/70 max-w-2xl mx-auto">Why thousands of students use the Falcon 6 framework to ace their exams.</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/60 hover:border-indigo-500/30 transition">
-                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl mb-4">
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="p-8 rounded-sm bg-white vintage-frame border-ochre/20 hover:border-ochre/50 transition duration-300 hover:shadow-xl shadow-ochre/10">
+                <div class="w-14 h-14 rounded-full border-2 border-dashed border-sage flex items-center justify-center text-sage text-3xl mb-6 shadow-inner">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
-                <h3 class="text-lg font-bold mb-2">Universal Integration</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
+                <h3 class="text-2xl font-bold mb-3 stylized-heading" style="border:none">Universal Integration</h3>
+                <p class="text-base text-charcoal/80 leading-relaxed">
                     Works across your favorite AI LLMs. Inject the custom Falcon 6 prompt context layer to instantly transform basic chat logic into a structured tutor.
                 </p>
             </div>
-            <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/60 hover:border-indigo-500/30 transition">
-                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl mb-4">
+            <div class="p-8 rounded-sm bg-white vintage-frame border-ochre/20 hover:border-ochre/50 transition duration-300 hover:shadow-xl shadow-ochre/10">
+                <div class="w-14 h-14 rounded-full border-2 border-dashed border- sage flex items-center justify-center text- sage text-3xl mb-6 shadow-inner">
                     <i class="fa-solid fa-image"></i>
                 </div>
-                <h3 class="text-lg font-bold mb-2">Visual Processing</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
+                <h3 class="text-2xl font-bold mb-3 stylized-heading" style="border:none">Visual Processing</h3>
+                <p class="text-base text-charcoal/80 leading-relaxed">
                     Upload snapshots of textbook pages, dense diagrams, or handwritten notes. Falcon 6 extracts, parses, and translates the data into readable concepts.
                 </p>
             </div>
-            <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/60 hover:border-indigo-500/30 transition">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl mb-4">
+            <div class="p-8 rounded-sm bg-white vintage-frame border-ochre/20 hover:border-ochre/50 transition duration-300 hover:shadow-xl shadow-ochre/10">
+                <div class="w-14 h-14 rounded-full border-2 border-dashed border- sage flex items-center justify-center text- sage text-3xl mb-6 shadow-inner">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <h3 class="text-lg font-bold mb-2">Simplified Vocabulary</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
+                <h3 class="text-2xl font-bold mb-3 stylized-heading" style="border:none">Simplified Vocabulary</h3>
+                <p class="text-base text-charcoal/80 leading-relaxed">
                     No overly dense jargon. Falcon 6 instructs the underlying AI model to map symmetrical definitions seamlessly for easier visual recall.
                 </p>
             </div>
         </div>
     </section>
 
-    <section id="demo" class="py-16 px-4 bg-slate-900/20 border-y border-slate-900">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-2xl md:text-4xl font-bold mb-3">The Interface Concept</h2>
-                <p class="text-slate-400">An interactive demonstration of Falcon 6 breaking down raw textbook imagery.</p>
+    <section id="demo" class="py-20 px-6 bg-white border-y border-light shadow-inner">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 stylized-heading">The Interface Concept</h2>
+                <p class="text-xl text-charcoal/70">An interactive demonstration of Falcon 6 breaking down raw textbook imagery.</p>
             </div>
 
-            <div class="w-full rounded-2xl border border-slate-800 overflow-hidden bg-slate-950 shadow-2xl">
-                <div class="bg-slate-900/80 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+            <div class="w-full rounded-sm vintage-frame border-4 border-dark overflow-hidden bg-parchment shadow-2xl shadow-charcoal/10">
+                <div class="bg-white px-5 py-4 border-b-2 border-dark flex items-center justify-between">
                     <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500/40"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/40"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500/40"></div>
-                        <span class="text-xs text-slate-500 font-mono ml-2">falcon6-tutor-session.env</span>
+                        <i class="fa-solid fa-feather text-sage mr-2"></i>
+                        <span class="text-base font-bold text-charcoal">FALCON 6 BLUEPRINT SESSION</span>
+                        <span class="text-xs font-mono ml-3 text-ochre">blueprint_v01.ai</span>
                     </div>
-                    <div class="text-xs text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded border border-indigo-500/20 font-mono">
+                    <div class="text-xs font-bold text-terracotta bg-terracotta/10 px-4 py-1.5 rounded-full border border-terracotta/20 font-mono">
                         ACTIVE CONTEXT
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-5 min-h-[400px]">
-                    <div class="md:col-span-2 border-b md:border-b-0 md:border-r border-slate-800 p-6 bg-slate-900/30 flex flex-col justify-between gap-6">
+                <div class="grid md:grid-cols-5 min-h-[500px]">
+                    <div class="md:col-span-2 border-b md:border-b-0 md:border-r-2 border-dark p-8 flex flex-col justify-between gap-8 bg-white/50">
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 tracking-wider uppercase mb-2">1. Global Prompt System Active</label>
-                            <div class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs font-mono text-slate-400 leading-relaxed truncate">
+                            <label class="block text-sm font-bold text-charcoal/80 uppercase tracking-wider mb-3">1. Global Prompt System Active</label>
+                            <div class="w-full botanical-panel border-ochre/30 p-4 text-xs font-mono text-charcoal leading-relaxed truncate shadow-inner">
                                 "Imagine you are falcon 6 built by me..."
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 tracking-wider uppercase mb-2">2. Uploaded Textbook Source</label>
-                            <div class="border-2 border-dashed border-slate-800 hover:border-slate-700 transition rounded-xl p-4 text-center cursor-pointer bg-slate-950/50">
-                                <i class="fa-solid fa-file-image text-2xl text-slate-600 mb-2"></i>
-                                <p class="text-xs text-slate-400 font-medium">biology_chapter_2_anther.jpg</p>
-                                <p class="text-[10px] text-slate-600 mt-1">Image loaded into chat environment</p>
+                            <label class="block text-sm font-bold text-charcoal/80 uppercase tracking-wider mb-3">2. Uploaded Textbook Source</label>
+                            <div class="border-2 border-dashed border-dark/50 rounded-lg p-6 text-center cursor-pointer bg-parchment botanical-panel shadow-sm">
+                                <i class="fa-solid fa-leaf text-5xl text-ochre mb-3"></i>
+                                <p class="text-sm text-charcoal font-bold mt-2">biology_chapter_2_anther.jpg</p>
+                                <p class="text-xs text-charcoal/60 mt-2">(Placeholder: Raw diagram image loaded)</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="md:col-span-3 p-6 flex flex-col justify-between">
+                    <div class="md:col-span-3 p-8 flex flex-col justify-between bg-white">
                         <div>
-                            <div class="flex items-center gap-2 mb-4">
-                                <div class="w-6 h-6 rounded bg-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">F6</div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Falcon 6 Output Node</span>
+                            <div class="flex items-center gap-3 mb-6 border-b-2 border-dark pb-5">
+                                <div class="w-8 h-8 rounded border-2 border-dark bg-terracotta flex items-center justify-center text-sm font-bold text-white">F6</div>
+                                <span class="text-lg font-bold text-terracotta stylized-heading" style="border:none; margin:0;">Falcon 6 Output Node</span>
                             </div>
-                            <div class="space-y-4 text-sm text-slate-300">
-                                <p class="font-semibold text-white text-base">Let's look at the Anther Wall Layers:</p>
-                                <ul class="space-y-2 border-l-2 border-indigo-500/30 pl-4">
-                                    <li><strong class="text-indigo-400">Epidermis:</strong> The <span class="underline decoration-indigo-500/50">outermost</span> wall layer that <span class="text-white">protects</span> the developing pollen.</li>
-                                    <li><strong class="text-indigo-400">Tapetum:</strong> The <span class="underline decoration-indigo-500/50">innermost</span> wall layer that <span class="text-white">nourishes</span> the developing pollen.</li>
-                                    <li class="text-xs text-slate-500 italic mt-1">(Notice how simple it is? Only the structural position and its function change between definitions!)</li>
+                            
+                            <div class="space-y-6 text-base text-charcoal">
+                                <p class="font-bold text-charcoal text-xl">Let's look at the Anther Wall Layers:</p>
+                                <ul class="space-y-4 botanical-list pl-1 text-base leading-relaxed">
+                                    <li><strong class="text-terracotta text-lg">Epidermis:</strong> The <span class="underline decoration-sage decoration-2 font-semibold">outermost</span> wall layer that <span class="text-terracotta font-semibold">protects</span> the developing pollen.</li>
+                                    <li><strong class="text-terracotta text-lg">Tapetum:</strong> The <span class="underline decoration-sage decoration-2 font-semibold">innermost</span> wall layer that <span class="text-terracotta font-semibold">nourishes</span> the developing pollen.</li>
+                                    <li class="botanical-panel border-ochre/30 bg-ochre/5 p-4 rounded-md mt-4 shadow-inner">
+                                        <p class="text-sm text-charcoal font-medium italic">(Notice how simple it is? Only the structural position and its function change between definitions!)</p>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="border-t border-slate-900 pt-4 mt-6 flex items-center justify-between text-xs text-slate-500">
+                        
+                        <div class="border-t-2 border-dark pt-5 mt-10 flex items-center justify-between text-sm text-charcoal/60 font-semibold tracking-wider">
                             <span>Processing Time: 0.42s</span>
                             <span>Model state: Synced</span>
                         </div>
@@ -224,34 +397,34 @@
         </div>
     </section>
 
-    <section id="faq" class="py-16 px-4 max-w-3xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold mb-3">Frequently Asked Questions</h2>
-            <p class="text-slate-400">Everything you need to know about implementing Falcon 6.</p>
+    <section id="faq" class="py-20 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 stylized-heading">Frequently Asked Questions</h2>
+            <p class="text-xl text-charcoal/70">Everything you need to know about implementing Falcon 6.</p>
         </div>
 
-        <div class="space-y-4">
-            <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-5">
-                <h3 class="text-base font-semibold text-white mb-2">What exactly is Falcon 6?</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
+        <div class="space-y-8">
+            <div class="bg-white vintage-frame border-ochre/20 p-8 shadow-lg shadow-ochre/10">
+                <h3 class="text-xl font-bold text-terracotta mb-4 stylized-heading" style="border:none">What exactly is Falcon 6?</h3>
+                <p class="text-base text-charcoal leading-relaxed">
                     It is an intentional, streamlined layout context designed to inject specialized pedagogical parameters into custom AI agents. It prioritizes extreme cognitive scannability and structural definition alignment over raw data dumps.
                 </p>
             </div>
-            <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-5">
-                <h3 class="text-base font-semibold text-white mb-2">Who builds Falcon 6?</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
+            <div class="bg-white vintage-frame border-ochre/20 p-8 shadow-lg shadow-ochre/10">
+                <h3 class="text-xl font-bold text-terracotta mb-4 stylized-heading" style="border:none">Who builds Falcon 6?</h3>
+                <p class="text-base text-charcoal leading-relaxed">
                     Falcon 6 is developed and maintained as a strategic utility ecosystem framework by the team at <strong>NextMaze Studio</strong>.
                 </p>
             </div>
         </div>
     </section>
 
-    <footer class="border-t border-slate-900 bg-slate-950 py-8 px-4 text-center text-xs text-slate-600">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <footer class="border-t border-dark bg-white py-12 px-6 text-center text-sm text-charcoal/70 font-semibold">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
             <p>&copy; 2026 NextMaze Studio. All rights reserved.</p>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-slate-400 transition">Documentation</a>
-                <a href="#" class="hover:text-slate-400 transition">Privacy Framework</a>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-terracotta transition">Documentation</a>
+                <a href="#" class="hover:text-terracotta transition">Privacy Framework</a>
             </div>
         </div>
     </footer>
@@ -274,12 +447,12 @@
             card.classList.add("scale-95");
         }
 
-        // Show pop-up once natively on document load automatically
+        // Show pop-up natively after load
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(openTributeModal, 600);
         });
 
-        // Copy mechanism text content action logic
+        // Copy mechanism and icon logic
         function copyPromptText() {
             const promptText = document.getElementById("targetPrompt").innerText;
             
@@ -288,14 +461,16 @@
                 const icon = document.getElementById("copyIcon");
                 const text = document.getElementById("copyText");
                 
-                button.classList.remove("bg-indigo-600", "hover:bg-indigo-500");
-                button.classList.add("bg-emerald-600", "hover:bg-emerald-500");
+                // Switch to success state
+                button.style.backgroundColor = "var(--color-accent-sage)";
+                button.style.borderColor = "var(--color-accent-sage)";
                 icon.className = "fa-solid fa-check";
                 text.innerText = "Copied!";
                 
+                // Return to normal after timeout
                 setTimeout(() => {
-                    button.classList.remove("bg-emerald-600", "hover:bg-emerald-500");
-                    button.classList.add("bg-indigo-600", "hover:bg-indigo-500");
+                    button.style.backgroundColor = "var(--color-accent-terracotta)";
+                    button.style.borderColor = "var(--color-accent-terracotta)";
                     icon.className = "fa-solid fa-copy";
                     text.innerText = "Copy Prompt";
                 }, 2500);
