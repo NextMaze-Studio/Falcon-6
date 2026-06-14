@@ -6,7 +6,7 @@
     <title>Falcon 6 | NextMaze Studio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Font Awesome Icons for Logos & UI Elements -->
+    <!-- Font Awesome Icons for UI Elements -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Premium Serif Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,28 +83,42 @@
         .ticker-track {
             display: flex;
             width: max-content;
-            animation: scrollTicker 30s linear infinite;
+            animation: scrollTicker 35s linear infinite;
         }
 
         .ticker-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 0 3rem;
-            font-size: 1.5rem;
+            gap: 14px;
+            padding: 0 3.5rem;
+            font-size: 1.35rem;
             font-family: 'Playfair Display', serif;
             font-weight: 600;
-            /* Target opacity requested: base level visibility scaling up cleanly */
+            /* Low-opacity requested for base state */
             opacity: 0.35; 
             transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
             color: var(--color-border-dark);
         }
 
-        /* Logo Highlight Interaction State */
+        /* Official Logo Image Layout Properties */
+        .ticker-logo-img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+            /* Grayscale blend to match the vintage/blueprint accent aesthetic uniformly */
+            filter: grayscale(100%) contrast(90%);
+            transition: filter 0.3s ease;
+        }
+
+        /* Logo Highlight Interaction State — Restores Full Opacity & Brand Color */
         .ticker-item:hover {
-            opacity: 0.95;
+            opacity: 1;
             transform: scale(1.05);
             color: var(--color-accent-terracotta);
+        }
+
+        .ticker-item:hover .ticker-logo-img {
+            filter: grayscale(0%) contrast(100%);
         }
 
         @keyframes scrollTicker {
@@ -172,7 +186,6 @@
                 <!-- Portrait Container referencing image_df5e1d.jpg -->
                 <div class="max-w-[240px] mx-auto mb-6 botanical-panel p-3 border-[#CB914C]/20 rounded">
                     <div class="aspect-square w-full border border-dashed border-[#3F3C36]/40 overflow-hidden bg-[#3D3D3D]/5 flex items-center justify-center relative">
-                        <!-- Graceful degradation placeholder mixed with targeted source handling -->
                         <img src="image_df5e1d.jpg" alt="In Loving Memory" class="w-full h-full object-cover" onerror="this.style.display='none'; document.getElementById('fallback-icon').classList.remove('hidden');">
                         <div id="fallback-icon" class="hidden absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
                             <i class="fa-solid fa-dog text-4xl text-[#A66551] mb-2"></i>
@@ -214,31 +227,29 @@
         </div>
     </header>
 
-    <!-- HORIZONTAL LOGOS TICKER BAR (PROMPT OPTIMIZED LOGOS) -->
+    <!-- HORIZONTAL LOGOS TICKER BAR (MAPPED TO YOUR UPLOADED BRAND ASSETS) -->
     <div class="text-center mb-2">
-        <span class="text-xs font-mono font-bold uppercase tracking-widest text-[#3D3D3D]/60">— PROMPT OPTIMIZED FOR MAJOR PLATFORMS —</span>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-[#3D3D3D]/60">— PROMPT OPTIMIZED FOR OFFICIAL PLATFORMS —</span>
     </div>
     <div class="ticker-wrap mb-16">
         <div class="ticker-track">
-            <!-- Continuous Stream Group 1 -->
-            <div class="ticker-item"><i class="fa-solid fa-robot"></i> ChatGPT</div>
-            <div class="ticker-item"><i class="fa-solid fa-gem"></i> Gemini</div>
-            <div class="ticker-item"><i class="fa-solid fa-brain"></i> Claude AI</div>
-            <div class="ticker-item"><i class="fa-solid fa-fish-fins"></i> DeepSeek</div>
-            <div class="ticker-item"><i class="fa-brands fa-microsoft"></i> Copilot</div>
-            <div class="ticker-item"><i class="fa-solid fa-g"></i> Grok</div>
-            <div class="ticker-item"><i class="fa-brands fa-apple"></i> Apple Intelligence</div>
-            <div class="ticker-item"><i class="fa-solid fa-compass"></i> Perplexity</div>
+            <!-- Continuous Stream Group 1 (Official Files) -->
+            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT" class="ticker-logo-img"> ChatGPT</div>
+            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini" class="ticker-logo-img"> Gemini</div>
+            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude" class="ticker-logo-img"> Claude AI</div>
+            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek" class="ticker-logo-img"> DeepSeek</div>
+            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot" class="ticker-logo-img"> Copilot</div>
+            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok" class="ticker-logo-img"> Grok</div>
+            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence" class="ticker-logo-img"> Apple Intelligence</div>
 
-            <!-- Continuous Stream Group 2 (Symmetrical Duplicate for Seamless Wrap Loop) -->
-            <div class="ticker-item"><i class="fa-solid fa-robot"></i> ChatGPT</div>
-            <div class="ticker-item"><i class="fa-solid fa-gem"></i> Gemini</div>
-            <div class="ticker-item"><i class="fa-solid fa-brain"></i> Claude AI</div>
-            <div class="ticker-item"><i class="fa-solid fa-fish-fins"></i> DeepSeek</div>
-            <div class="ticker-item"><i class="fa-brands fa-microsoft"></i> Copilot</div>
-            <div class="ticker-item"><i class="fa-solid fa-g"></i> Grok</div>
-            <div class="ticker-item"><i class="fa-brands fa-apple"></i> Apple Intelligence</div>
-            <div class="ticker-item"><i class="fa-solid fa-compass"></i> Perplexity</div>
+            <!-- Continuous Stream Group 2 (Symmetrical Duplicate for Seamless Wrapping Loop) -->
+            <div class="ticker-item"><img src="chatgpt-logo-Modern-png.png" alt="ChatGPT" class="ticker-logo-img"> ChatGPT</div>
+            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini" class="ticker-logo-img"> Gemini</div>
+            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude" class="ticker-logo-img"> Claude AI</div>
+            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek" class="ticker-logo-img"> DeepSeek</div>
+            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="Copilot" class="ticker-logo-img"> Copilot</div>
+            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok" class="ticker-logo-img"> Grok</div>
+            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence" class="ticker-logo-img"> Apple Intelligence</div>
         </div>
     </div>
 
@@ -289,7 +300,7 @@
 
     <!-- GLOBAL COMPONENT JAVASCRIPT LOGIC DIRECTIVE -->
     <script>
-        // Trigger Popup Modal display states safely on document initialization
+        // Trigger Popup Modal displays safely on document initialization
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(openTribute, 400);
         });
@@ -319,13 +330,11 @@
                 const icon = document.getElementById("copyIcon");
                 const text = document.getElementById("copyText");
                 
-                // Set interactive modification confirmation layout values
                 btn.style.backgroundColor = "var(--color-accent-sage)";
                 btn.style.borderColor = "var(--color-accent-sage)";
                 icon.className = "fa-solid fa-check";
                 text.innerText = "Copied to Clipboard!";
                 
-                // Return parameters to original design structure variables after timeout
                 setTimeout(() => {
                     btn.style.backgroundColor = "var(--color-accent-terracotta)";
                     btn.style.borderColor = "var(--color-accent-terracotta)";
