@@ -11,6 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
+        /* Official Logo Image Layout Properties */
+.ticker-logo-img {
+    height: 38px;
+    width: 120px;          /* Enforces rigid width footprint so the browser cannot collapse it */
+    object-fit: contain;   /* Scales the logo image inside the footprint without warping */
+    display: inline-block; /* Forces rendering engine allocation */
+    
+    /* Grayscale blend to match the vintage/blueprint accent aesthetic uniformly */
+    filter: grayscale(100%) contrast(90%);
+    transition: filter 0.3s ease;
+}
         html {
             scroll-behavior: smooth;
         }
