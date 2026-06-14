@@ -65,14 +65,14 @@
             color: var(--color-accent-terracotta);
         }
 
-        /* Dynamic Continuous Logo Infinite Ticker */
+        /* Dynamic Continuous Logo Infinite Ticker Layout Window */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
             background-color: rgba(63, 60, 54, 0.04);
             border-top: 2px solid var(--color-border-dark);
             border-bottom: 2px solid var(--color-border-dark);
-            padding: 20px 0;
+            padding: 24px 0;
             display: flex;
             align-items: center;
         }
@@ -80,7 +80,7 @@
         .ticker-track {
             display: flex;
             width: max-content;
-            animation: scrollTicker 30s linear infinite;
+            animation: scrollTicker 25s linear infinite;
         }
 
         .ticker-item {
@@ -88,31 +88,23 @@
             align-items: center;
             justify-content: center;
             padding: 0 3.5rem;
-            /* Low-opacity baseline visibility requested */
-            opacity: 0.35; 
+            /* Dimmed baseline transparency requested */
+            opacity: 0.45; 
             transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
         }
 
-        /* Official Logo Image Layout Properties - FIXED COLLAPSE TYPE */
+        /* Official Image Framework Enforcements */
         .ticker-logo-img {
-            height: 38px;
-            width: 120px;          /* Forced fixed footprint size preventing collapse */
-            object-fit: contain;   /* Safely scales your graphics without distorting */
-            display: inline-block; /* Forces raw block render area assignment */
-            
-            /* Grayscale blend to match the vintage/blueprint aesthetic uniformly */
-            filter: grayscale(100%) contrast(90%);
-            transition: filter 0.3s ease;
+            height: 45px;          /* Forced block layout proportions */
+            width: 130px;         /* Locked landscape boundary box to halt browser width collapsing */
+            object-fit: contain;   /* Restricts asset distortions cleanly inside constraints */
+            display: block;
         }
 
-        /* Logo Highlight Interaction State — Restores Full Opacity & Brand Color */
+        /* Ticker Interaction States (Shifting visibility cleanly up on pointer focus) */
         .ticker-item:hover {
             opacity: 1;
             transform: scale(1.08);
-        }
-
-        .ticker-item:hover .ticker-logo-img {
-            filter: grayscale(0%) contrast(100%);
         }
 
         @keyframes scrollTicker {
@@ -325,7 +317,7 @@
                     text.innerText = "Copy Context Layer";
                 }, 2000);
             }).catch(err => {
-                console.error("Transmission error parsing prompt allocation execution: ", err);
+                console.error("Transmission error: ", err);
             });
         }
     </script>
