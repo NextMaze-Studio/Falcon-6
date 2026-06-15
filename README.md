@@ -1,2 +1,7 @@
 # Falcon-6
 Made By NextMaze Studio
+## Copyright
+
+Copyright © 2026 NextMaze Studio. All rights reserved.
+
+No part of this repository may be reproduced, distributed, or transmitted in any form or by any means without the prior written permission of the copyright owner.
