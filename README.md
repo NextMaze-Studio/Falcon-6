@@ -2,7 +2,7 @@
 Made By NextMaze Studio
 # 🚀 Project Title
 
-[![License: All Rights Reserved](https://shields.io)](https://choosealicense.com)
+[![License: All Rights Reserved](https://shields.io)](LICENSE)
 
 
 > ⚠️ **CRITICAL NOTICE**  
