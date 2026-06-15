@@ -1,6 +1,6 @@
 # 🚀 Falcon-6
 
-[![License: All Rights Reserved](https://www.flaticon.com/free-icon/link_786224)](LICENSE)
+[![License: All Rights Reserved](https://cdn-icons-png.flaticon.com/512/786/786224.png)](LICENSE)
 
 
 > ⚠️ **CRITICAL NOTICE**  
