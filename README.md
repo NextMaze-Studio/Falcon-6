@@ -1,6 +1,4 @@
-# Falcon-6
-Made By NextMaze Studio
-# 🚀 Project Title
+# 🚀 Falcon-6
 
 [![License: All Rights Reserved](https://shields.io)](LICENSE)
 
