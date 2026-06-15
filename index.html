@@ -114,7 +114,7 @@
         }
 
         /* -----------------------------------------------------------
-            Scrolling Logo Ticker Styles
+            FIXED: Scrolling Logo Ticker Styles (Train Loop)
            ----------------------------------------------------------- */
         .ticker-wrap {
             width: 100%;
@@ -128,23 +128,30 @@
 
         .ticker-move {
             display: flex;
-            width: 200%; /* Enough room for two full sets of logos to loop seamlessly */
-            animation: ticker 25s linear infinite; /* Adjust timing here for speed */
+            width: max-content; /* Let content dictate full track size natively */
+            animation: ticker 25s linear infinite; /* Seamless speed tracking */
+        }
+
+        .ticker-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-shrink: 0;
         }
 
         .ticker-item {
-            flex: 0 0 14.28%; /* 7 logos total, means 1/7th width per item */
+            padding: 0 40px; /* Generous padding between train segments */
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0.25; /* Muted opacity to balance with vintage design */
             transition: opacity 0.3s ease;
-            padding: 0 10px;
+            flex-shrink: 0;
         }
         
         .ticker-item img {
             max-height: 32px; /* Uniform height constraint */
-            max-width: 85%;
+            width: auto;
             object-fit: contain;
             display: block;
         }
@@ -153,10 +160,10 @@
             opacity: 0.7;
         }
 
-        /* The infinite scrolling marquee animation */
+        /* Fixed infinite train loop logic */
         @keyframes ticker {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); } /* Shift over exactly one full cycle */
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); } /* Shifts exactly one matching group over */
         }
 
         /* Hide standard modern navigation on small screens for this vintage look */
@@ -280,21 +287,25 @@
 
     <div class="ticker-wrap">
         <div class="ticker-move">
-            <div class="ticker-item"><img src="openai-logo-Modern-png.png" alt="ChatGPT"></div>
-            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
-            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
-            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
-            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
-            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="MS Copilot"></div>
-            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
+            <div class="ticker-group">
+                <div class="ticker-item"><img src="openai-logo-Modern-png.png" alt="ChatGPT"></div>
+                <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
+                <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
+                <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
+                <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
+                <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="MS Copilot"></div>
+                <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
+            </div>
             
-            <div class="ticker-item"><img src="openai-logo-Modern-png.png" alt="ChatGPT"></div>
-            <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
-            <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
-            <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
-            <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
-            <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="MS Copilot"></div>
-            <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
+            <div class="ticker-group" aria-hidden="true">
+                <div class="ticker-item"><img src="openai-logo-Modern-png.png" alt="ChatGPT"></div>
+                <div class="ticker-item"><img src="Google_Gemini_Logo_2025.png" alt="Gemini"></div>
+                <div class="ticker-item"><img src="Claude_Logo_2023.png" alt="Claude"></div>
+                <div class="ticker-item"><img src="DeepSeek_Logo_2023.png" alt="DeepSeek"></div>
+                <div class="ticker-item"><img src="Apple_Intelligence_Logo_2024.png" alt="Apple Intelligence"></div>
+                <div class="ticker-item"><img src="Microsoft_Copilot_Logo_2023.png" alt="MS Copilot"></div>
+                <div class="ticker-item"><img src="Grok_Logo_2025.png" alt="Grok"></div>
+            </div>
         </div>
     </div>
 
